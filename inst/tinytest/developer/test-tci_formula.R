@@ -6,44 +6,44 @@ source(file.path(getwd(), "source", "functions4testing.R"))
 x <- 1:100
 n <- length(x)
 expect_equal(
-  tci_formula(~ .M, 0L, length(x), names(x), sys.call()),
+  tci_formula(~ .M, 0L, length(x), names(x), NULL, sys.call()),
   0
 )
 expect_equal(
-  tci_formula( ~ .Nms, 0L, length(x), names(x), sys.call()),
+  tci_formula( ~ .Nms, 0L, length(x), names(x), NULL, sys.call()),
   NULL
 )
 names(x) <- sample(month.abb, 100, TRUE)
 expect_equal(
-  tci_formula(~ .Nms, 0L, length(x), names(x), sys.call()),
+  tci_formula(~ .Nms, 0L, length(x), names(x), NULL, sys.call()),
   names(x)
 )
 expect_equal(
-  tci_formula(~ .N, 0L, length(x), names(x), sys.call()),
+  tci_formula(~ .N, 0L, length(x), names(x), NULL, sys.call()),
   n
 )
 expect_equal(
-  tci_formula(~ .I, 0L, length(x), names(x), sys.call()),
+  tci_formula(~ .I, 0L, length(x), names(x), NULL, sys.call()),
   seq_len(n)
 )
 expect_equal(
-  tci_formula(~ .bi(-1, 1), 0L, length(x), names(x), sys.call()),
+  tci_formula(~ .bi(-1, 1), 0L, length(x), names(x), NULL, sys.call()),
   c(n, 1)
 )
 expect_equal(
-  tci_formula(~ .bi(2, -2), 0L, length(x), names(x), sys.call()),
+  tci_formula(~ .bi(2, -2), 0L, length(x), names(x), NULL, sys.call()),
   c(2, n - 1)
 )
 expect_equal(
-  tci_formula(~ .bi(-.I), 0L, length(x), names(x), sys.call()),
+  tci_formula(~ .bi(-.I), 0L, length(x), names(x), NULL, sys.call()),
   rev(seq_len(n))
 )
 expect_equal(
-  tci_formula(~ .ptrn(c(TRUE, FALSE)), 0L, length(x), names(x), sys.call()),
+  tci_formula(~ .ptrn(c(TRUE, FALSE)), 0L, length(x), names(x), NULL, sys.call()),
   (1:length(x))[c(TRUE, FALSE)]
 )
 expect_equal(
-  tci_formula(~ .ptrn(c(TRUE, FALSE), 2, 99), 0L, length(x), names(x), sys.call()),
+  tci_formula(~ .ptrn(c(TRUE, FALSE), 2, 99), 0L, length(x), names(x), NULL, sys.call()),
   (2:99)[c(TRUE, FALSE)]
 )
 
@@ -58,44 +58,44 @@ dimnames(x) <- lapply(dim(x), \(i) sample(letters, i))
 for(m in 1:3) {
   n <- dim(x)[m]
   expect_equal(
-    tci_formula(~ .M, m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .M, m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     m
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .Nms, m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .Nms, m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     dimnames(x)[[m]]
   ) |> errorfun()
   dimnames(x)[m] <- list(NULL)
   expect_equal(
-    tci_formula(~ .Nms, m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .Nms, m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     NULL
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .N, m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .N, m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     n
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .I, m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .I, m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     seq_len(n)
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .bi(-1, 1), m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .bi(-1, 1), m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     c(n, 1)
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .bi(2, -2), m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .bi(2, -2), m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     c(2, n - 1)
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .bi(-.I), m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .bi(-.I), m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     rev(seq_len(n))
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .ptrn(c(TRUE, FALSE)), m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .ptrn(c(TRUE, FALSE)), m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     (1:n)[c(TRUE, FALSE)]
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .ptrn(c(TRUE, FALSE), 2, 7), m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .ptrn(c(TRUE, FALSE), 2, 7), m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     (2:7)[c(TRUE, FALSE)]
   ) |> errorfun()
   
@@ -118,39 +118,39 @@ x <- data.table::data.table(
 for(m in 1:2) {
   n <- dim(x)[m]
   expect_equal(
-    tci_formula(~ .M, m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .M, m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     m
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .Nms, m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .Nms, m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     dimnames(x)[[m]]
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .N, m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .N, m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     n
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .I, m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .I, m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     seq_len(n)
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .bi(-1, 1), m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .bi(-1, 1), m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     c(n, 1)
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .bi(2, -2), m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .bi(2, -2), m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     c(2, n - 1)
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .bi(-.I), m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .bi(-.I), m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     rev(seq_len(n))
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .ptrn(c(TRUE, FALSE)), m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .ptrn(c(TRUE, FALSE)), m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     (1:n)[c(TRUE, FALSE)]
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .ptrn(c(TRUE, FALSE), 2, 4), m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .ptrn(c(TRUE, FALSE), 2, 4), m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     (2:4)[c(TRUE, FALSE)]
   ) |> errorfun()
   
@@ -162,40 +162,40 @@ for(m in 1:2) {
 x <- integer(0L)
 n <- length(x)
 expect_equal(
-  tci_formula(~ .M, 0L, length(x), names(x), sys.call()),
+  tci_formula(~ .M, 0L, length(x), names(x), NULL, sys.call()),
   0
 )
 expect_equal(
-  tci_formula(~ .Nms, 0L, length(x), names(x), sys.call()),
+  tci_formula(~ .Nms, 0L, length(x), names(x), NULL, sys.call()),
   NULL
 )
 expect_equal(
-  tci_formula(~ .N, 0L, length(x), names(x), sys.call()),
+  tci_formula(~ .N, 0L, length(x), names(x), NULL, sys.call()),
   n
 )
 expect_equal(
-  tci_formula(~ .I, 0L, length(x), names(x), sys.call()),
+  tci_formula(~ .I, 0L, length(x), names(x), NULL, sys.call()),
   seq_len(n)
 )
 expect_equal(
-  tci_formula(~ .bi(-1, 1), 0L, length(x), names(x), sys.call()),
+  tci_formula(~ .bi(-1, 1), 0L, length(x), names(x), NULL, sys.call()),
   c(n, 1) # yes, this is as expected
 )
 expect_equal(
-  tci_formula(~ .bi(2, -2), 0L, length(x), names(x), sys.call()),
+  tci_formula(~ .bi(2, -2), 0L, length(x), names(x), NULL, sys.call()),
   c(2, n - 1)
 )
 expect_equal(
-  tci_formula(~ .bi(-.I), 0L, length(x), names(x), sys.call()),
+  tci_formula(~ .bi(-.I), 0L, length(x), names(x), NULL, sys.call()),
   integer(0L)
 )
 
 expect_equal(
-  tci_formula(~ .ptrn(c(TRUE, FALSE)), 0L, length(x), names(x), sys.call()),
+  tci_formula(~ .ptrn(c(TRUE, FALSE)), 0L, length(x), names(x), NULL, sys.call()),
   integer(0L)
 )
 expect_equal(
-  tci_formula(~ .ptrn(c(TRUE, FALSE), 1, 2), 0L, length(x), names(x), sys.call()),
+  tci_formula(~ .ptrn(c(TRUE, FALSE), 1, 2), 0L, length(x), names(x), NULL, sys.call()),
   integer(0L)
 )
 
@@ -210,44 +210,44 @@ dimnames(x) <- lapply(dim(x), \(i) sample(letters, i))
 for(m in 1:3) {
   n <- dim(x)[m]
   expect_equal(
-    tci_formula(~ .M, m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .M, m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     m
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .Nms, m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .Nms, m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     dimnames(x)[[m]]
   ) |> errorfun()
   dimnames(x)[m] <- list(NULL)
   expect_equal(
-    tci_formula(~ .Nms, m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .Nms, m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     NULL
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .N, m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .N, m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     n
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .I, m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .I, m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     seq_len(n)
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .bi(-1, 1), m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .bi(-1, 1), m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     c(n, 1)
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .bi(2, -2), m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .bi(2, -2), m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     c(2, n - 1)
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .bi(-.I), m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .bi(-.I), m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     rev(seq_len(n))
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .ptrn(c(TRUE, FALSE)), m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .ptrn(c(TRUE, FALSE)), m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     if(n == 0L) integer(0L) else (1:n)[c(TRUE, FALSE)]
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .ptrn(c(TRUE, FALSE), 2, 7), m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .ptrn(c(TRUE, FALSE), 2, 7), m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     if(n == 0L) integer(0L) else (2:7)[c(TRUE, FALSE)]
   ) |> errorfun()
   
@@ -264,39 +264,39 @@ x <- data.table::data.table()
 for(m in 1:2) {
   n <- dim(x)[m]
   expect_equal(
-    tci_formula(~ .M, m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .M, m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     m
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .Nms, m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .Nms, m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     dimnames(x)[[m]]
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .N, m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .N, m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     n
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .I, m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .I, m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     seq_len(n)
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .bi(-1, 1), m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .bi(-1, 1), m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     c(n, 1)
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .bi(2, -2), m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .bi(2, -2), m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     c(2, n - 1)
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .bi(-.I), m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .bi(-.I), m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     rev(seq_len(n))
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .ptrn(c(TRUE, FALSE)), m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .ptrn(c(TRUE, FALSE)), m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     if(n == 0L) integer(0L) else (1:n)[c(TRUE, FALSE)]
   ) |> errorfun()
   expect_equal(
-    tci_formula(~ .ptrn(c(TRUE, FALSE), 2, 7), m, dim(x)[m], dimnames(x)[[m]], sys.call()),
+    tci_formula(~ .ptrn(c(TRUE, FALSE), 2, 7), m, dim(x)[m], dimnames(x)[[m]], NULL, sys.call()),
     if(n == 0L) integer(0L) else (2:7)[c(TRUE, FALSE)]
   ) |> errorfun()
   

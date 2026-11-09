@@ -2,18 +2,18 @@
 #'
 #' @description
 #' Methods to replace or transform a subset of a
-#' \link[=squarebrackets_supported_structures]{supported mutable object}
+#' \link[=asub_supported_structures]{supported mutable object}
 #' using
-#' \link[=squarebrackets_PassByReference]{pass-by-reference semantics}. \cr
+#' \link[=asub_PassByReference]{pass-by-reference semantics}. \cr
 #' 
 #'
 #' @param x a \bold{variable} belonging to one of the
-#' \link[=squarebrackets_supported_structures]{supported mutable classes}. \cr
-#' @param i,use,s,row,col See \link{squarebrackets_index_args}. \cr
+#' \link[=asub_supported_structures]{supported mutable classes}. \cr
+#' @param i,use,s,row,col See \link{asub_index_args}. \cr
 #' An empty index selection leaves the original object unchanged. \cr
-#' @param ... see \link{squarebrackets_ellipsis}.
-#' @param rp,tf see \link{squarebrackets_modify}.
-#' @param chkdup see \link{squarebrackets_options}. \cr
+#' @param ... see \link{asub_ellipsis}.
+#' @param rp,tf see \link{asub_modify}.
+#' @param chkdup see \link{asub_options}. \cr
 #' `r .mybadge_performance_set2("FALSE")` \cr
 #' 
 #' 
@@ -75,7 +75,7 @@ tt_set <- function(x, row = NULL, col = NULL, use = 1:2, ..., rp, tf) {
 #' @rdname generic_set
 #' @export
 ii_set.default <- function(
-    x, i = NULL, use = 1, ...,  rp, tf, chkdup = getOption("squarebrackets.chkdup", FALSE)
+    x, i = NULL, use = 1, ...,  rp, tf, chkdup = getOption("asub.chkdup", FALSE)
 ) {
   
   # error checks:
@@ -108,7 +108,7 @@ ii_set.default <- function(
 #' @rdname generic_set
 #' @export
 ss_set.default <- function(
-    x, s = NULL, use = rdim(x), ...,  rp, tf, chkdup = getOption("squarebrackets.chkdup", FALSE)
+    x, s = NULL, use = rdim(x), ...,  rp, tf, chkdup = getOption("asub.chkdup", FALSE)
 ) {
   
   stopifnot_ma_safe2mutate(substitute(x), parent.frame(n = 1), sys.call())
@@ -120,7 +120,7 @@ ss_set.default <- function(
 #' @export
 tt_set.default <- function(
     x, row = NULL, col = NULL, use = 1:2, ...,
-    rp, tf, chkdup = getOption("squarebrackets.chkdup", FALSE)
+    rp, tf, chkdup = getOption("asub.chkdup", FALSE)
 ) {
   stopifnot_ma_safe2mutate(substitute(x), parent.frame(n = 1), sys.call())
   .internal_check_dots(list(...), sys.call())
@@ -133,7 +133,7 @@ tt_set.default <- function(
 #' @export
 tt_set.data.table <- function(
     x, row = NULL, col = NULL, use = 1:2, ...,
-    rp, tf, chkdup = getOption("squarebrackets.chkdup", FALSE)
+    rp, tf, chkdup = getOption("asub.chkdup", FALSE)
 ) {
   
   # checks:

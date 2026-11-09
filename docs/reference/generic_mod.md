@@ -16,7 +16,7 @@ ii_mod(
   rp,
   tf,
   env = NULL,
-  chkdup = getOption("squarebrackets.chkdup", FALSE)
+  chkdup = getOption("asub.chkdup", FALSE)
 )
 
 ss_mod(
@@ -27,7 +27,7 @@ ss_mod(
   rp,
   tf,
   env = NULL,
-  chkdup = getOption("squarebrackets.chkdup", FALSE)
+  chkdup = getOption("asub.chkdup", FALSE)
 )
 
 tt_mod(
@@ -39,7 +39,7 @@ tt_mod(
   rp,
   tf,
   env = NULL,
-  chkdup = getOption("squarebrackets.chkdup", FALSE)
+  chkdup = getOption("asub.chkdup", FALSE)
 )
 ```
 
@@ -48,28 +48,28 @@ tt_mod(
 - x:
 
   see
-  [squarebrackets_supported_structures](https://tony-aw.github.io/squarebrackets/reference/aaa03_squarebrackets_supported_structures.md).
+  [asub_supported_structures](https://tony-aw.github.io/asub/reference/aaa03_asub_supported_structures.md).
 
 - i, use, s, row, col:
 
   See
-  [squarebrackets_index_args](https://tony-aw.github.io/squarebrackets/reference/aaa04_squarebrackets_index_args.md).  
+  [asub_index_args](https://tony-aw.github.io/asub/reference/aaa04_asub_index_args.md).  
   An empty index selection returns the original object unchanged.  
 
 - ...:
 
   see
-  [squarebrackets_ellipsis](https://tony-aw.github.io/squarebrackets/reference/aaa07_squarebrackets_ellipsis.md).
+  [asub_ellipsis](https://tony-aw.github.io/asub/reference/aaa07_asub_ellipsis.md).
 
 - rp, tf, env:
 
   see
-  [squarebrackets_modify](https://tony-aw.github.io/squarebrackets/reference/aaa05_squarebrackets_modify.md).
+  [asub_modify](https://tony-aw.github.io/asub/reference/aaa05_asub_modify.md).
 
 - chkdup:
 
   see
-  [squarebrackets_options](https://tony-aw.github.io/squarebrackets/reference/aaa06_squarebrackets_options.md).  
+  [asub_options](https://tony-aw.github.io/asub/reference/aaa06_asub_options.md).  
   ![\[for performance: set to
   FALSE\]](figures/for_performance-set_to_FALSE-red.svg)
 
@@ -431,15 +431,15 @@ str(obj) # notice that columns "a" and "c" are INTEGER (`int`)
 #>  $ d: Factor w/ 10 levels "a","b","c","d",..: 1 2 3 4 5 6 7 8 9 10
 
 tt_mod(
-  obj, with(obj,  (a > 2) & (c < 17)), is.numeric,
+  obj, ~ (a > 2) & (c < 17), is.numeric,
   tf = sqrt
 ) 
 tt_mod(
-  obj, with(obj,  (a > 2) & (c < 17)), is.numeric,
+  obj, ~ (a > 2) & (c < 17), is.numeric,
   tf = sqrt
 ) 
 tt_mod(
-  obj, with(obj,  (a > 2) & (c < 17)), is.numeric,
+  obj, ~ (a > 2) & (c < 17), is.numeric,
   tf = sqrt
 ) 
 

@@ -4,17 +4,17 @@
 #' Functional forms of special data.table operations. \cr
 #' These functions do not use Non-Standard Evaluation. \cr
 #' These functions also benefit from the security measures that
-#' 'squarebrackets' implements for 
-#' the \link[=squarebrackets_PassByReference]{pass-by-reference semantics}. \cr
+#' 'asub' implements for 
+#' the \link[=asub_PassByReference]{pass-by-reference semantics}. \cr
 #' 
 #'  * `dt_aggr()`
 #'  aggregates a data.table or tidytable, applying functions over columns specified in `col`.
 #'  * `dt_setcoe()`
 #'  coercively transforms whole columns of a data.table,
-#'  using \link[=squarebrackets_PassByReference]{pass-by-reference semantics}.
+#'  using \link[=asub_PassByReference]{pass-by-reference semantics}.
 #'  * `dt_setmutate()` modifies, adds, or removes columns,
 #'  possibly based on other existing columns,
-#'  using \link[=squarebrackets_PassByReference]{pass-by-reference semantics}. \cr \cr
+#'  using \link[=asub_PassByReference]{pass-by-reference semantics}. \cr \cr
 #' 
 #' 
 #' 
@@ -26,13 +26,13 @@
 #' `newnames` will be constructed as: \cr
 #' `paste0(names(fun), "(", names(tt_x(x, 0L, col)), ")")`.
 #' @param v the coercive transformation function
-#' @param row,col,use see \link{squarebrackets_index_args}. \cr
+#' @param row,col,use see \link{asub_index_args}. \cr
 #' For `dt_setcoe()`, `use` must be either a scalar positive number to select columns,
 #' or a scalar negative number to exclude columns.
 #' @param by a character vector, giving the names of the grouping column(s).
 #' @param keyby Boolean,
 #' indicating if the aggregated result should be ordered by the columns specified in `by`.
-#' @param chkdup see \link{squarebrackets_options}. \cr
+#' @param chkdup see \link{asub_options}. \cr
 #' `r .mybadge_performance_set2("FALSE")` \cr
 #' @param mutations a named list, or a formula that evaluates to a named list. \cr
 #' List names that correspond to existing columns, will modify those columns. \cr
@@ -153,7 +153,7 @@ dt_aggr <- function(
 #' @rdname dt
 #' @export
 dt_setcoe <- function(
-    x, col = NULL, use = 2L, v, chkdup = getOption("squarebrackets.chkdup", FALSE)
+    x, col = NULL, use = 2L, v, chkdup = getOption("asub.chkdup", FALSE)
 ) {
   
   .methodcheck.dt(x, sys.call())

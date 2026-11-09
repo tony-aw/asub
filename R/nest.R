@@ -6,7 +6,7 @@
 #' In analogy to that function, the `n()` function \bold{nests} objects into a list
 #' (not into an atomic vector, as atomic vectors cannot be nested). \cr
 #' It is a short-hand version of the \link[base]{list} function. \cr
-#' This is handy because lists are often needed in 'squarebrackets',
+#' This is handy because lists are often needed in 'asub',
 #' especially for arrays. \cr
 #' 
 #' 

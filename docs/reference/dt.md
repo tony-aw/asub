@@ -2,20 +2,20 @@
 
 Functional forms of special data.table operations.  
 These functions do not use Non-Standard Evaluation.  
-These functions also benefit from the security measures that
-'squarebrackets' implements for the [pass-by-reference
-semantics](https://tony-aw.github.io/squarebrackets/reference/aaa09_squarebrackets_PassByReference.md).  
+These functions also benefit from the security measures that 'asub'
+implements for the [pass-by-reference
+semantics](https://tony-aw.github.io/asub/reference/aaa09_asub_PassByReference.md).  
 
 - `dt_aggr()` aggregates a data.table or tidytable, applying functions
   over columns specified in `col`.
 
 - `dt_setcoe()` coercively transforms whole columns of a data.table,
   using [pass-by-reference
-  semantics](https://tony-aw.github.io/squarebrackets/reference/aaa09_squarebrackets_PassByReference.md).
+  semantics](https://tony-aw.github.io/asub/reference/aaa09_asub_PassByReference.md).
 
 - `dt_setmutate()` modifies, adds, or removes columns, possibly based on
   other existing columns, using [pass-by-reference
-  semantics](https://tony-aw.github.io/squarebrackets/reference/aaa09_squarebrackets_PassByReference.md).  
+  semantics](https://tony-aw.github.io/asub/reference/aaa09_asub_PassByReference.md).  
     
 
 ## Usage
@@ -32,13 +32,7 @@ dt_aggr(
   keyby = FALSE
 )
 
-dt_setcoe(
-  x,
-  col = NULL,
-  use = 2L,
-  v,
-  chkdup = getOption("squarebrackets.chkdup", FALSE)
-)
+dt_setcoe(x, col = NULL, use = 2L, v, chkdup = getOption("asub.chkdup", FALSE))
 
 dt_setmutate(x, mutations)
 ```
@@ -52,7 +46,7 @@ dt_setmutate(x, mutations)
 - row, col, use:
 
   see
-  [squarebrackets_index_args](https://tony-aw.github.io/squarebrackets/reference/aaa04_squarebrackets_index_args.md).  
+  [asub_index_args](https://tony-aw.github.io/asub/reference/aaa04_asub_index_args.md).  
   For `dt_setcoe()`, `use` must be either a scalar positive number to
   select columns, or a scalar negative number to exclude columns.
 
@@ -83,7 +77,7 @@ dt_setmutate(x, mutations)
 - chkdup:
 
   see
-  [squarebrackets_options](https://tony-aw.github.io/squarebrackets/reference/aaa06_squarebrackets_options.md).  
+  [asub_options](https://tony-aw.github.io/asub/reference/aaa06_asub_options.md).  
   ![\[for performance: set to
   FALSE\]](figures/for_performance-set_to_FALSE-red.svg)  
 
@@ -185,7 +179,7 @@ str(obj) # notice that columns "a" and "c" are INTEGER (`int`)
 #>  $ b: chr  "a" "b" "c" "d" ...
 #>  $ c: int  11 12 13 14 15 16 17 18 19 20
 #>  $ d: Factor w/ 10 levels "a","b","c","d",..: 1 2 3 4 5 6 7 8 9 10
-#>  - attr(*, ".internal.selfref")=<pointer: 0x000001b702058d30> 
+#>  - attr(*, ".internal.selfref")=<pointer: 0x0000026d77858ba0> 
 dt_setcoe(obj, is.numeric, v = as.numeric) # integers are now numeric
 str(obj) # now those columns are double/numeric
 #> Classes 'data.table' and 'data.frame':   10 obs. of  4 variables:
@@ -193,7 +187,7 @@ str(obj) # now those columns are double/numeric
 #>  $ b: chr  "a" "b" "c" "d" ...
 #>  $ c: num  11 12 13 14 15 16 17 18 19 20
 #>  $ d: Factor w/ 10 levels "a","b","c","d",..: 1 2 3 4 5 6 7 8 9 10
-#>  - attr(*, ".internal.selfref")=<pointer: 0x000001b702058d30> 
+#>  - attr(*, ".internal.selfref")=<pointer: 0x0000026d77858ba0> 
 
 
 #############################################################################

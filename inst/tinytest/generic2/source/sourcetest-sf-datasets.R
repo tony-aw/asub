@@ -3,7 +3,7 @@
 
 any_empty_indices <- function(...) {
   lst <- list(...)
-  return(squarebrackets:::.any_empty_indices(lst))
+  return(asub:::.any_empty_indices(lst))
 }
 
 

@@ -6,8 +6,8 @@ In analogy to that function, the `n()` function **nests** objects into a
 list (not into an atomic vector, as atomic vectors cannot be nested).  
 It is a short-hand version of the
 [list](https://rdrr.io/r/base/list.html) function.  
-This is handy because lists are often needed in 'squarebrackets',
-especially for arrays.  
+This is handy because lists are often needed in 'asub', especially for
+arrays.  
 
 ## Usage
 

@@ -14,15 +14,16 @@
 #'  * If the target is row indices, input nrow for `n`.
 #'  * If the target is flat indices, input the length for `n`.
 #' @param use 1 or -1, indicating how to use the indices. \cr
-#' See \link{squarebrackets_index_args}.
+#' See \link{asub_index_args}.
 #' @param m a number giving the margin; set to `0` for dimensionless vectors.
 #' @param form a formula; see \link{keywords}.
-#' @param chkdup see \link{squarebrackets_options}. \cr
+#' @param chkdup see \link{asub_options}. \cr
 #' `r .mybadge_performance_set2("FALSE")` \cr
 #' @param uniquely_named Boolean,
 #' indicating if the user knows a-priori that the relevant names of `x` are unique. \cr
 #' If set to `TRUE`, speed may increase. \cr
 #' But specifying `TRUE` when the relevant names are not unique will result in incorrect output.
+#' @param extra_vars extra variables that the formula can have access to.
 #' @param .abortcall environment where the error message is passed to.
 #' 
 #'
@@ -127,7 +128,7 @@ tci_chr <- function(
 
 #' @rdname developer_tci
 #' @export
-tci_formula <- function(form, m, n, nms, .abortcall) {
+tci_formula <- function(form, m, n, nms, extra_vars = NULL, .abortcall) {
   
   keywords <- list(
     .M = m,
@@ -137,6 +138,9 @@ tci_formula <- function(form, m, n, nms, .abortcall) {
     .bi = \(...) .keyword_bi(list(...),  n),
     .ptrn = \(ptrn, start = 1L, end = n) .keyword_ptrn(ptrn, start, end, n)
   )
+  if(!is.null(extra_vars)) {
+    keywords <- c(keywords, as.list(extra_vars))
+  }
   
   if(!is.formula(form)) {
     stop(simpleError("invalid formula given", call = .abortcall))
@@ -144,10 +148,11 @@ tci_formula <- function(form, m, n, nms, .abortcall) {
   if(length(form) != 2L) {
     stop(simpleError("invalid formula given", call = .abortcall))
   }
-  env <- environment(form)
-  txt <- as.character(form)[2L]
-  out <- eval(parse(text = txt), keywords, enclos = env)
-  environment(form) <- NULL
+  
+  out <- .with_internal(keywords, form, .abortcall)
+  if(!is.atomic(out) && !.C_is_missing_idx(out)) {
+    stop(simpleError("invalid formula given", call = .abortcall))
+  }
   return(out)
 }
 

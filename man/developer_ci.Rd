@@ -41,10 +41,10 @@ ci_df(x, row, col, use = 1:2, chkdup = FALSE, .abortcall)
 \arguments{
 \item{x}{the object for which the indices are meant.}
 
-\item{i, s, row, col, slice, margin, use}{See \link{squarebrackets_index_args}. \cr}
+\item{i, s, row, col, slice, margin, use}{See \link{asub_index_args}. \cr}
 
-\item{chkdup}{see \link{squarebrackets_options}. \cr
-\ifelse{html}{\figure{for_performance-set_to_FALSE-red.svg}{options: alt='[for performance: set to FALSE]'}}{\link[=squarebrackets_help]{for performance: set to FALSE}} \cr}
+\item{chkdup}{see \link{asub_options}. \cr
+\ifelse{html}{\figure{for_performance-set_to_FALSE-red.svg}{options: alt='[for performance: set to FALSE]'}}{\link[=asub_help]{for performance: set to FALSE}} \cr}
 
 \item{uniquely_named}{Boolean,
 indicating if the user knows a-priori that the relevant names of \code{x} are unique. \cr

@@ -4,7 +4,7 @@
 .mybadge_class <- function(x) {
   txt <- paste0("class: ", x)
   file <- paste0("class-", gsub(" ", "_", x), "-blue.svg")
-  text <- sprintf("\\link[=squarebrackets_index_args]{%s}", txt)
+  text <- sprintf("\\link[=asub_index_args]{%s}", txt)
   html <- sprintf(
     "\\figure{%s}{options: alt='[%s]'}",
     file, txt)
@@ -16,7 +16,7 @@
 .mybadge_all_classes <- function() {
   txt <- "all classes"
   file <- "all_classes-blue.svg"
-  text <- sprintf("\\link[=squarebrackets_index_args]{%s}", txt)
+  text <- sprintf("\\link[=asub_index_args]{%s}", txt)
   html <- sprintf(
     "\\figure{%s}{options: alt='[%s]'}",
     file, txt)
@@ -32,7 +32,7 @@
   if(x == "depends") x2 <- "depends-lightblue"
   txt <- paste0("coercion_through_copy: ", x)
   file <- paste0("coercion_through_copy-", x2, ".svg")
-  text <- sprintf("\\link[=squarebrackets_coercion]{%s}", txt)
+  text <- sprintf("\\link[=asub_coercion]{%s}", txt)
   html <- sprintf(
     "\\figure{%s}{options: alt='[%s]'}",
     file, txt)
@@ -47,7 +47,7 @@
   if(x == "depends") x2 <- "depends-lightblue"
   txt <- paste0("coercion_by_reference: ", x)
   file <- paste0("coercion_by_reference-", x2, ".svg")
-  text <- sprintf("\\link[=squarebrackets_coercion]{%s}", txt)
+  text <- sprintf("\\link[=asub_coercion]{%s}", txt)
   html <- sprintf(
     "\\figure{%s}{options: alt='[%s]'}",
     file, txt)
@@ -63,7 +63,7 @@
   if(x == "depends") x2 <- "depends-lightblue"
   txt <- paste0("coercion_through_copy: ", x)
   file <- paste0("coercion_through_copy-", x2, ".svg")
-  text <- sprintf("\\link[=squarebrackets_coercion]{%s}", txt)
+  text <- sprintf("\\link[=asub_coercion]{%s}", txt)
   html <- sprintf(
     "\\figure{%s}{options: alt='[%s]'}",
     file, txt)
@@ -78,7 +78,7 @@
   if(x == "NO") x2 <- "NO-red"
   txt <- paste0("require unique names: ", x)
   file <- paste0("require_unique_names-", x2, ".svg")
-  text <- sprintf("\\link[=squarebrackets_technical]{%s}", txt)
+  text <- sprintf("\\link[=asub_technical]{%s}", txt)
   html <- sprintf(
     "\\figure{%s}{options: alt='[%s]'}",
     file, txt)
@@ -91,7 +91,7 @@
 .mybadge_intro_section <- function(txt, colour) {
   txt <- toupper(txt)
   file <- paste0(gsub(" ", "_", tolower(txt)), "-", colour, ".svg")
-  text <- sprintf("\\link[=squarebrackets_help]{%s}", txt)
+  text <- sprintf("\\link[=asub_help]{%s}", txt)
   html <- sprintf(
     "\\figure{%s}{options: alt='[%s]'}",
     file, txt)
@@ -117,7 +117,7 @@
   if(x == "FALSE") x2 <- "FALSE-red"
   txt <- paste0("for performance: set to ", x)
   file <- paste0("for_performance-set_to_", x2, ".svg")
-  text <- sprintf("\\link[=squarebrackets_help]{%s}", txt)
+  text <- sprintf("\\link[=asub_help]{%s}", txt)
   html <- sprintf(
     "\\figure{%s}{options: alt='[%s]'}",
     file, txt)
@@ -130,12 +130,12 @@
   extra.txt <- ""
   extra.file <- ""
   if(type == "option") {
-    extra.txt <- "squarebrackets."
-    extra.file <- "squarebrackets_dot_"
+    extra.txt <- "asub."
+    extra.file <- "asub_dot_"
   }
   txt <- paste0(type, ": ", extra.txt, x)
   file <- paste0(type, "-", extra.file, x, "-blue.svg")
-  text <- sprintf("\\link[=squarebrackets_options]{%s}", txt)
+  text <- sprintf("\\link[=asub_options]{%s}", txt)
   html <- sprintf(
     "\\figure{%s}{options: alt='[%s]'}",
     file, txt)

@@ -24,7 +24,7 @@ tt_set(x, row = NULL, col = NULL, use = 1:2, ..., rp, tf)
   ...,
   rp,
   tf,
-  chkdup = getOption("squarebrackets.chkdup", FALSE)
+  chkdup = getOption("asub.chkdup", FALSE)
 )
 
 \method{ss_set}{default}(
@@ -34,7 +34,7 @@ tt_set(x, row = NULL, col = NULL, use = 1:2, ..., rp, tf)
   ...,
   rp,
   tf,
-  chkdup = getOption("squarebrackets.chkdup", FALSE)
+  chkdup = getOption("asub.chkdup", FALSE)
 )
 
 \method{tt_set}{default}(
@@ -45,7 +45,7 @@ tt_set(x, row = NULL, col = NULL, use = 1:2, ..., rp, tf)
   ...,
   rp,
   tf,
-  chkdup = getOption("squarebrackets.chkdup", FALSE)
+  chkdup = getOption("asub.chkdup", FALSE)
 )
 
 \method{tt_set}{data.table}(
@@ -56,22 +56,22 @@ tt_set(x, row = NULL, col = NULL, use = 1:2, ..., rp, tf)
   ...,
   rp,
   tf,
-  chkdup = getOption("squarebrackets.chkdup", FALSE)
+  chkdup = getOption("asub.chkdup", FALSE)
 )
 }
 \arguments{
 \item{x}{a \bold{variable} belonging to one of the
-\link[=squarebrackets_supported_structures]{supported mutable classes}. \cr}
+\link[=asub_supported_structures]{supported mutable classes}. \cr}
 
-\item{i, use, s, row, col}{See \link{squarebrackets_index_args}. \cr
+\item{i, use, s, row, col}{See \link{asub_index_args}. \cr
 An empty index selection leaves the original object unchanged. \cr}
 
-\item{...}{see \link{squarebrackets_ellipsis}.}
+\item{...}{see \link{asub_ellipsis}.}
 
-\item{rp, tf}{see \link{squarebrackets_modify}.}
+\item{rp, tf}{see \link{asub_modify}.}
 
-\item{chkdup}{see \link{squarebrackets_options}. \cr
-\ifelse{html}{\figure{for_performance-set_to_FALSE-red.svg}{options: alt='[for performance: set to FALSE]'}}{\link[=squarebrackets_help]{for performance: set to FALSE}} \cr}
+\item{chkdup}{see \link{asub_options}. \cr
+\ifelse{html}{\figure{for_performance-set_to_FALSE-red.svg}{options: alt='[for performance: set to FALSE]'}}{\link[=asub_help]{for performance: set to FALSE}} \cr}
 }
 \value{
 Returns: VOID. This method modifies the object by reference. \cr
@@ -80,9 +80,9 @@ Since this function returns void, you'll just get \code{NULL}. \cr \cr
 }
 \description{
 Methods to replace or transform a subset of a
-\link[=squarebrackets_supported_structures]{supported mutable object}
+\link[=asub_supported_structures]{supported mutable object}
 using
-\link[=squarebrackets_PassByReference]{pass-by-reference semantics}. \cr
+\link[=asub_PassByReference]{pass-by-reference semantics}. \cr
 }
 \details{
 \bold{Transform or Replace} \cr
@@ -143,7 +143,7 @@ print(obj2)
 obj <- data.table::data.table(a = 1:10, b = letters[1:10], c = 11:20, d = factor(letters[1:10]))
 str(obj) # notice that columns "a" and "c" are INTEGER (`int`)
 tt_set(
-  obj, with(obj,  (a >= 2) & (c <= 17)), is.numeric,
+  obj, ~  (a >= 2) & (c <= 17), is.numeric,
   tf = sqrt # WARNING: sqrt() results in `dbl`, but columns are `int`, so decimals lost
 )
 print(obj)
@@ -151,7 +151,7 @@ print(obj)
 obj <- data.table::data.table(a = 1:10, b = letters[1:10], c = 11:20, d = factor(letters[1:10]))
 tt_set(obj, col = is.numeric, tf = as.numeric) # first coerce type by whole columns
 str(obj)
-tt_set(obj, with(obj,  (a >= 2) & (c <= 17)), is.numeric,
+tt_set(obj, ~  (a >= 2) & (c <= 17), is.numeric,
   tf = sqrt # SAFE: coercion performed by column first
 ) 
 print(obj)

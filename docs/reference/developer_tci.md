@@ -28,7 +28,7 @@ tci_chr(
   .abortcall = sys.call()
 )
 
-tci_formula(form, m, n, nms, .abortcall)
+tci_formula(form, m, n, nms, extra_vars = NULL, .abortcall)
 
 tci_zerolen(n, use = 1L)
 ```
@@ -61,12 +61,12 @@ tci_zerolen(n, use = 1L)
 
   1 or -1, indicating how to use the indices.  
   See
-  [squarebrackets_index_args](https://tony-aw.github.io/squarebrackets/reference/aaa04_squarebrackets_index_args.md).
+  [asub_index_args](https://tony-aw.github.io/asub/reference/aaa04_asub_index_args.md).
 
 - chkdup:
 
   see
-  [squarebrackets_options](https://tony-aw.github.io/squarebrackets/reference/aaa06_squarebrackets_options.md).  
+  [asub_options](https://tony-aw.github.io/asub/reference/aaa06_asub_options.md).  
   ![\[for performance: set to
   FALSE\]](figures/for_performance-set_to_FALSE-red.svg)  
 
@@ -85,11 +85,15 @@ tci_zerolen(n, use = 1L)
 - form:
 
   a formula; see
-  [keywords](https://tony-aw.github.io/squarebrackets/reference/aaa11_squarebrackets_keywords.md).
+  [keywords](https://tony-aw.github.io/asub/reference/aaa11_asub_keywords.md).
 
 - m:
 
   a number giving the margin; set to `0` for dimensionless vectors.
+
+- extra_vars:
+
+  extra variables that the formula can have access to.
 
 ## Value
 

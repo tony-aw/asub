@@ -126,8 +126,7 @@ Thus, the orientation of interior indices in, for example, a
 
 So in a 4 by 5 matrix, subscript `[1, 2]` corresponds to interior index
 `5`.  
-Array subscripting in 'squarebrackets' also follows this standard
-convention.  
+Array subscripting in 'asub' also follows this standard convention.  
   
 
 ## Note

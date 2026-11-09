@@ -4,7 +4,6 @@ library(stringi)
 
 DTYPES <- 2:16
 
-
 SXPTYPES <- c("LGLSXP", "INTSXP", "REALSXP", "CPLXSXP", "STRSXP", "RAWSXP")
 RCPPTYPES <- c("Logical", "Integer", "Numeric", "Complex", "Character", "Raw")
 

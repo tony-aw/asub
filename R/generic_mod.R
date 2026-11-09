@@ -6,12 +6,12 @@
 #' Recursive objects are modified via a careful shallow (not deep) copy. \cr
 #' \cr
 #'
-#' @param x see \link{squarebrackets_supported_structures}.
-#' @param i,use,s,row,col See \link{squarebrackets_index_args}. \cr
+#' @param x see \link{asub_supported_structures}.
+#' @param i,use,s,row,col See \link{asub_index_args}. \cr
 #' An empty index selection returns the original object unchanged. \cr
-#' @param ... see \link{squarebrackets_ellipsis}.
-#' @param rp,tf,env see \link{squarebrackets_modify}.
-#' @param chkdup see \link{squarebrackets_options}. \cr
+#' @param ... see \link{asub_ellipsis}.
+#' @param rp,tf,env see \link{asub_modify}.
+#' @param chkdup see \link{asub_options}. \cr
 #' `r .mybadge_performance_set2("FALSE")`
 #' 
 #' 
@@ -43,26 +43,21 @@ NULL
 #' @export
 ii_mod <- function(
     x, i = NULL, use = 1, ...,
-    rp, tf, env = NULL, chkdup = getOption("squarebrackets.chkdup", FALSE)
+    rp, tf, env = NULL, chkdup = getOption("asub.chkdup", FALSE)
 ) {
   
   if(is.null(env)) env <- parent.frame()
   .internal_check_dots(list(...), sys.call())
   x_expr <- substitute(x)
   
-  # evaluate if x is atomic; do in parent.frame to avoid R's quick-draw semantics
-  x_is_atomic  <- eval(call("is.atomic", x_expr), envir = env)
   
-  if(x_is_atomic) {
-    # x is atomic;
-    # use its shadow to avoid R's quick-draw semantics
+  if(is.function(i)) {
+    x_shadow <- x
+  }
+  else {
     x_shadow <- cast_ArrayShadow2(
       x_expr, env
     )
-  }
-  else {
-    x_shadow <- x
-    if(!missing(tf)) tf <- .funply(tf)
   }
   
   
@@ -79,7 +74,7 @@ ii_mod <- function(
 #' @export
 ss_mod <- function(
     x, s = NULL, use = Inf, ...,
-    rp, tf, env = NULL, chkdup = getOption("squarebrackets.chkdup", FALSE)
+    rp, tf, env = NULL, chkdup = getOption("asub.chkdup", FALSE)
 ) {
   
   
@@ -102,7 +97,7 @@ ss_mod <- function(
 #' @export
 tt_mod <- function(
     x, row = NULL, col = NULL, use = 1:2, ...,
-    rp, tf, env = NULL, chkdup = getOption("squarebrackets.chkdup", FALSE)
+    rp, tf, env = NULL, chkdup = getOption("asub.chkdup", FALSE)
 ) {
   
   if(is.null(env)) env <- parent.frame()

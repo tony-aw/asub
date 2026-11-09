@@ -1,9 +1,9 @@
 # Safely Change the Names of a Mutable Object By Reference
 
 Functions to rename a [supported mutable
-object](https://tony-aw.github.io/squarebrackets/reference/aaa03_squarebrackets_supported_structures.md)
+object](https://tony-aw.github.io/asub/reference/aaa03_asub_supported_structures.md)
 using [pass-by-reference
-semantics](https://tony-aw.github.io/squarebrackets/reference/aaa09_squarebrackets_PassByReference.md):
+semantics](https://tony-aw.github.io/asub/reference/aaa09_asub_PassByReference.md):
 
 - `sb_setFlatnames()` renames the (flat) names of a `mutatomic` object.
 
@@ -29,7 +29,7 @@ sb_setVarnames(x, old, new, skip_absent = FALSE, ...)
 - x:
 
   a **variable** belonging to one of the [supported mutable
-  classes](https://tony-aw.github.io/squarebrackets/reference/aaa03_squarebrackets_supported_structures.md).  
+  classes](https://tony-aw.github.io/asub/reference/aaa03_asub_supported_structures.md).  
 
 - i:
 
@@ -45,7 +45,7 @@ sb_setVarnames(x, old, new, skip_absent = FALSE, ...)
 - ...:
 
   see
-  [squarebrackets_ellipsis](https://tony-aw.github.io/squarebrackets/reference/aaa07_squarebrackets_ellipsis.md).  
+  [asub_ellipsis](https://tony-aw.github.io/asub/reference/aaa07_asub_ellipsis.md).  
     
 
 - m:

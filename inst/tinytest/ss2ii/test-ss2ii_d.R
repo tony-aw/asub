@@ -4,7 +4,7 @@
 sys.source(file.path(getwd(), "source", "functions4testing.R"), envir = environment())
 enumerate <- 0
 temp.fun <- function(x, lst) {
-  squarebrackets:::.arr_x(x, lst, sys.call())
+  asub:::.arr_x(x, lst, sys.call())
 }
 
 # NOTE:
@@ -35,7 +35,7 @@ for(iSample in 1:10) {
       x <- array(x.data[[iType]], x.dim)
       sub <- lapply(x.dim, \(x) as.integer(sample(1:x, max(c(1, x)), FALSE)))
       dims <- 1:length(x.dim)
-      ind <- squarebrackets:::.ss2ii_d32(sub, x.dim)
+      ind <- asub:::.ss2ii_d32(sub, x.dim)
       
       expected[[i]] <- temp.fun(x, sub) |> as.vector()
       out[[i]] <- x[ind]
@@ -63,7 +63,7 @@ for(iSample in 1:10) {
       sub <- lapply(x.dim, \(x) as.integer(sample(1:x, max(c(1, x)), FALSE)))
       dims <- 1:length(x.dim)
       
-      ind <- squarebrackets:::.ss2ii_d64(sub, x.dim)
+      ind <- asub:::.ss2ii_d64(sub, x.dim)
       
       expected[[i]] <- temp.fun(x, sub) |> as.vector()
       out[[i]] <- x[ind]

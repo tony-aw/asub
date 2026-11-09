@@ -15,7 +15,7 @@ sb_setVarnames(x, old, new, skip_absent = FALSE, ...)
 }
 \arguments{
 \item{x}{a \bold{variable} belonging to one of the
-\link[=squarebrackets_supported_structures]{supported mutable classes}. \cr}
+\link[=asub_supported_structures]{supported mutable classes}. \cr}
 
 \item{i}{logical, numeric, character, or imaginary indices, indicating which flatnames should be changed. \cr
 If \code{i = NULL}, the names will be completely replaced.}
@@ -23,7 +23,7 @@ If \code{i = NULL}, the names will be completely replaced.}
 \item{newnames}{Atomic character vector giving the new names. \cr
 Specifying \code{NULL} will remove the names. \cr}
 
-\item{...}{see \link{squarebrackets_ellipsis}. \cr \cr}
+\item{...}{see \link{asub_ellipsis}. \cr \cr}
 
 \item{m}{integer vector giving the margin(s) for which to change the names
 (\code{m = 1L} for rows, \code{m = 2L} for columns, etc.).}
@@ -53,9 +53,9 @@ Since this function returns void, you'll just get \code{NULL}. \cr \cr
 }
 \description{
 Functions to rename a
-\link[=squarebrackets_supported_structures]{supported mutable object}
+\link[=asub_supported_structures]{supported mutable object}
 using
-\link[=squarebrackets_PassByReference]{pass-by-reference semantics}:
+\link[=asub_PassByReference]{pass-by-reference semantics}:
 \itemize{
 \item \code{sb_setFlatnames()} renames the (flat) names of a \code{mutatomic} object.
 \item \code{sb_setDimnames()} renames the dimension names of a \code{mutatomic} object.

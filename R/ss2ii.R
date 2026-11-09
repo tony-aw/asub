@@ -64,7 +64,7 @@
 #' ```
 #' 
 #' So in a 4 by 5 matrix, subscript `[1, 2]` corresponds to interior index `5`. \cr
-#' Array subscripting in 'squarebrackets' also follows this standard convention. \cr
+#' Array subscripting in 'asub' also follows this standard convention. \cr
 #' \cr
 #' 
 #' 

@@ -108,18 +108,12 @@ c.mutatomic <- function(..., use.names = TRUE) {
     stop("malformed mutatomic")
   }
   
-  oldtype <- typeof(x)
   
   oc <- oldClass(x)
   os <- attr(x, "serial")
   class(x) <- NULL
   x[...] <- value
   class(x) <- oc
-  
-  newtype <- typeof(x)
-  if(oldtype != newtype) {
-    message(sprintf("coercing type from `%s` to `%s`", oldtype, newtype))
-  }
   
   attr(x, "serial") <- os
   x
@@ -133,18 +127,11 @@ c.mutatomic <- function(..., use.names = TRUE) {
     stop("malformed mutatomic")
   }
   
-  oldtype <- typeof(x)
-  
   oc <- oldClass(x)
   os <- attr(x, "serial")
   class(x) <- NULL
   x[[...]] <- value
   class(x) <- oc
-  
-  newtype <- typeof(x)
-  if(oldtype != newtype) {
-    message(sprintf("coercing type from `%s` to `%s`", oldtype, newtype))
-  }
   
   attr(x, "serial") <- os
   x

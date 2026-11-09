@@ -4,7 +4,7 @@
 enumerate <- 0 # to count number of tests in loops
 source(file.path(getwd(), "source", "functions4testing.R"))
 
-.keyword_bi <- squarebrackets:::.keyword_bi
+.keyword_bi <- asub:::.keyword_bi
 
 
 # scalar ====

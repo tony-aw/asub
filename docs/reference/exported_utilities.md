@@ -19,7 +19,7 @@ indx_wo(i, x, xnames, xsize)
 - i:
 
   See
-  [squarebrackets_index_args](https://tony-aw.github.io/squarebrackets/reference/aaa04_squarebrackets_index_args.md).
+  [asub_index_args](https://tony-aw.github.io/asub/reference/aaa04_asub_index_args.md).
 
 - x:
 

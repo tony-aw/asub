@@ -4,7 +4,7 @@
 #' The `mutatomic` class is a class of mutable atomic array-like objects. \cr
 #' It works exactly the same in all aspects as regular atomic vectors and arrays. \cr
 #' There is only one real difference: \cr
-#' Pass-by-reference functions in 'squarebrackets'
+#' Pass-by-reference functions in 'asub'
 #' only accept atomic objects when they are of class `mutatomic`,
 #' for greater safety. \cr
 #' In all other aspects, `mutatomic` objects are the same as R's regular atomic objects,
@@ -67,7 +67,7 @@
 #' 
 #' @section Footnotes: 
 #' - Always use
-#' the exported functions given by 'squarebrackets'
+#' the exported functions given by 'asub'
 #' to create a `mutatomic` object,
 #' as they make necessary safety checks.
 #' - Mutable objects that can only exist as vectors can be modified via functions from the 'data.table' or 'collapse' packages.
@@ -76,7 +76,7 @@
 #' this may break or corrupt it's interactions with methods
 #' (like the `[` and `print()` methods),
 #' coercions (like `as.data.frame()`), and array manipulators (like `aperm()`). \cr
-#' 'squarebrackets' does not allow such sloppiness,
+#' 'asub' does not allow such sloppiness,
 #' and thus strictly consider factors and date-time objects to be vectors but not 'array-like'. \cr
 #' - It would not make much sense to make factors dimensional,
 #' since they are primarily used to represent a dummy matrix for statistical modelling. \cr

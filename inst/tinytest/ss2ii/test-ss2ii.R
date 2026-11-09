@@ -4,7 +4,7 @@
 sys.source(file.path(getwd(), "source", "functions4testing.R"), envir = environment())
 enumerate <- 0
 temp.fun <- function(x, lst) {
-  squarebrackets:::.arr_x(x, lst, sys.call())
+  asub:::.arr_x(x, lst, sys.call())
 }
 
 # NOTE:

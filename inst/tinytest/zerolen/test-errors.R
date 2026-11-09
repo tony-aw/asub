@@ -15,30 +15,30 @@ expect_equal(
 )
 
 funlist <- list(
-  \(x, ii, use = 1) ii_x(x, ii, use),
-  \(x, ii, use = 1) {
+  \(x, ii = NULL, use = 1) ii_x(x, ii, use),
+  \(x, ii = NULL, use = 1) {
     ii_mod(x, ii, use, chkdup = FALSE, rp = -1)
     return(x)
   },
-  \(x, ii, use = 1) {
+  \(x, ii = NULL, use = 1) {
     ii_mod(x, ii, use, chkdup = FALSE, rp = integer(0L))
     return(x)
   },
-  \(x, ii, use = 1) {
+  \(x, ii = NULL, use = 1) {
     ii_mod(x, ii, use, chkdup = FALSE, tf = mean)
     return(x)
   },
-  \(x, ii, use = 1) {
+  \(x, ii = NULL, use = 1) {
     x <- data.table::copy(x)
     ii_set(x, ii, use, rp = -1)
     return(x)
   },
-  \(x, ii, use = 1) {
+  \(x, ii = NULL, use = 1) {
     x <- data.table::copy(x)
     ii_set(x, ii, use, rp = integer(0L))
     return(x)
   },
-  \(x, ii, use = 1) {
+  \(x, ii = NULL, use = 1) {
     x <- data.table::copy(x)
     ii_set(x, ii, use, tf = mean)
     return(x)

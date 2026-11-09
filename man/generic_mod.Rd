@@ -15,7 +15,7 @@ ii_mod(
   rp,
   tf,
   env = NULL,
-  chkdup = getOption("squarebrackets.chkdup", FALSE)
+  chkdup = getOption("asub.chkdup", FALSE)
 )
 
 ss_mod(
@@ -26,7 +26,7 @@ ss_mod(
   rp,
   tf,
   env = NULL,
-  chkdup = getOption("squarebrackets.chkdup", FALSE)
+  chkdup = getOption("asub.chkdup", FALSE)
 )
 
 tt_mod(
@@ -38,21 +38,21 @@ tt_mod(
   rp,
   tf,
   env = NULL,
-  chkdup = getOption("squarebrackets.chkdup", FALSE)
+  chkdup = getOption("asub.chkdup", FALSE)
 )
 }
 \arguments{
-\item{x}{see \link{squarebrackets_supported_structures}.}
+\item{x}{see \link{asub_supported_structures}.}
 
-\item{i, use, s, row, col}{See \link{squarebrackets_index_args}. \cr
+\item{i, use, s, row, col}{See \link{asub_index_args}. \cr
 An empty index selection returns the original object unchanged. \cr}
 
-\item{...}{see \link{squarebrackets_ellipsis}.}
+\item{...}{see \link{asub_ellipsis}.}
 
-\item{rp, tf, env}{see \link{squarebrackets_modify}.}
+\item{rp, tf, env}{see \link{asub_modify}.}
 
-\item{chkdup}{see \link{squarebrackets_options}. \cr
-\ifelse{html}{\figure{for_performance-set_to_FALSE-red.svg}{options: alt='[for performance: set to FALSE]'}}{\link[=squarebrackets_help]{for performance: set to FALSE}}}
+\item{chkdup}{see \link{asub_options}. \cr
+\ifelse{html}{\figure{for_performance-set_to_FALSE-red.svg}{options: alt='[for performance: set to FALSE]'}}{\link[=asub_help]{for performance: set to FALSE}}}
 }
 \value{
 Nothing. The object is modified in-place as-if running \code{x[...] <- value} \cr
@@ -192,15 +192,15 @@ obj <- data.frame(a = 1:10, b = letters[1:10], c = 11:20, d = factor(letters[1:1
 str(obj) # notice that columns "a" and "c" are INTEGER (`int`)
 
 tt_mod(
-  obj, with(obj,  (a > 2) & (c < 17)), is.numeric,
+  obj, ~ (a > 2) & (c < 17), is.numeric,
   tf = sqrt
 ) 
 tt_mod(
-  obj, with(obj,  (a > 2) & (c < 17)), is.numeric,
+  obj, ~ (a > 2) & (c < 17), is.numeric,
   tf = sqrt
 ) 
 tt_mod(
-  obj, with(obj,  (a > 2) & (c < 17)), is.numeric,
+  obj, ~ (a > 2) & (c < 17), is.numeric,
   tf = sqrt
 ) 
 

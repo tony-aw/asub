@@ -147,7 +147,7 @@ for(i in seq_along(x.data)) {
 
 # as.mutatomic vs mutatomic vs materialize_atomic - ALTREP ====
 x <- 1:1e6
-is_altrep <- squarebrackets:::.C_is_altrep
+is_altrep <- asub:::.C_is_altrep
 expect_true(is_altrep(x))
 expect_false(as.mutatomic(x) |> is_altrep())
 expect_false(mutatomic(x) |> is_altrep())
@@ -157,11 +157,11 @@ enumerate <- enumerate + 2L
 # materialize ====
 x <- 1:10
 expect_true(
-  squarebrackets:::.C_is_altrep(x)
+  asub:::.C_is_altrep(x)
 )
 x <- as.mutatomic(x)
 expect_false(
-  squarebrackets:::.C_is_altrep(x)
+  asub:::.C_is_altrep(x)
 )
 expect_true(
   is.mutatomic(x)
@@ -169,11 +169,11 @@ expect_true(
 
 x <- 1:10
 expect_true(
-  squarebrackets:::.C_is_altrep(x)
+  asub:::.C_is_altrep(x)
 )
 x <- mutatomic(x)
 expect_false(
-  squarebrackets:::.C_is_altrep(x)
+  asub:::.C_is_altrep(x)
 )
 expect_true(
   is.mutatomic(x)

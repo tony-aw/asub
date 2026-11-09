@@ -1,7 +1,7 @@
 #' Drop Singular List
 #'
 #' @description
-#' 'squarebrackets' provides some helper functions for sub-set operations on recursive objects
+#' 'asub' provides some helper functions for sub-set operations on recursive objects
 #' (lists and data.frames). \cr
 #' \cr
 #' `dropl(x)` returns `x[[1L]]` if `length(x) == 1`, and returns `x` otherwise. \cr

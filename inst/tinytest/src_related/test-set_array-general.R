@@ -36,7 +36,7 @@ generate_data <- function(x.len) {
 
 tempfun1 <- function(x, s, rp) {
   x <- data.table::copy(x)
-  squarebrackets:::.rcpp_set_array_general_atomic(x, s, dim(x), rp)
+  asub:::.rcpp_set_array_general_atomic(x, s, dim(x), rp)
   return(x)
 }
 
@@ -60,7 +60,7 @@ for(iSample in 1:10) {
       
       x <- data.table::copy(x)
       x2 <- x
-      squarebrackets:::.rcpp_set_array_general_atomic(x, s, dim(x), rp.lst[[iType]])
+      asub:::.rcpp_set_array_general_atomic(x, s, dim(x), rp.lst[[iType]])
       expect_equal(x,x2) |> errorfun() # test indexing & pass-by-reference
       
       enumerate <- enumerate + 2
@@ -93,7 +93,7 @@ for(iSample in 1:10) {
       
       x <- data.table::copy(x)
       x2 <- x
-      squarebrackets:::.rcpp_set_array_general_atomic(x, s, dim(x), rp)
+      asub:::.rcpp_set_array_general_atomic(x, s, dim(x), rp)
       expect_equal(x,x2) |> errorfun() # test indexing & pass-by-reference
       
       enumerate <- enumerate + 2

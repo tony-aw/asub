@@ -17,16 +17,16 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/tony-aw/squarebrackets/blob/HEAD/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/tony-aw/asub/blob/HEAD/DESCRIPTION)
 
-Wilkes T (2026). *squarebrackets: Subset Methods as Alternatives to the
-Square Brackets Operators for Programming*. R package version
-0.0.0.9011, <https://github.com/tony-aw/squarebrackets/>.
+Wilkes T (2026). *asub: Programmatically Friendly Subset Methods for
+Array-like and Data.frame-like S3 Objects*. R package version
+0.0.0.9000, <https://github.com/tony-aw/asub/>.
 
     @Manual{,
-      title = {squarebrackets: Subset Methods as Alternatives to the Square Brackets Operators for Programming},
+      title = {asub: Programmatically Friendly Subset Methods for Array-like and Data.frame-like S3 Objects},
       author = {Tony Wilkes},
       year = {2026},
-      note = {R package version 0.0.0.9011},
-      url = {https://github.com/tony-aw/squarebrackets/},
+      note = {R package version 0.0.0.9000},
+      url = {https://github.com/tony-aw/asub/},
     }

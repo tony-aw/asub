@@ -1,7 +1,7 @@
 
 enumerate <- 0
 
-.C_match_range <- squarebrackets:::.C_match_range
+.C_match_range <- asub:::.C_match_range
 
 x <- sample(c(1:10, rep(NA, 9)))
 n <- sum(!is.na(x))

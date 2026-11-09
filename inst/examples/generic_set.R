@@ -49,7 +49,7 @@ print(obj2)
 obj <- data.table::data.table(a = 1:10, b = letters[1:10], c = 11:20, d = factor(letters[1:10]))
 str(obj) # notice that columns "a" and "c" are INTEGER (`int`)
 tt_set(
-  obj, with(obj,  (a >= 2) & (c <= 17)), is.numeric,
+  obj, ~  (a >= 2) & (c <= 17), is.numeric,
   tf = sqrt # WARNING: sqrt() results in `dbl`, but columns are `int`, so decimals lost
 )
 print(obj)
@@ -57,7 +57,7 @@ print(obj)
 obj <- data.table::data.table(a = 1:10, b = letters[1:10], c = 11:20, d = factor(letters[1:10]))
 tt_set(obj, col = is.numeric, tf = as.numeric) # first coerce type by whole columns
 str(obj)
-tt_set(obj, with(obj,  (a >= 2) & (c <= 17)), is.numeric,
+tt_set(obj, ~  (a >= 2) & (c <= 17), is.numeric,
   tf = sqrt # SAFE: coercion performed by column first
 ) 
 print(obj)

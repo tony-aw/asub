@@ -23,7 +23,7 @@ header_for_package <- "
 
 #include <Rcpp.h>
 
-#include \"squarebrackets.h\"
+#include \"asub.h\"
 
 using namespace Rcpp;
 

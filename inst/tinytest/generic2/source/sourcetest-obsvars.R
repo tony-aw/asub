@@ -3,7 +3,7 @@
 
 any_empty_indices <- function(...) {
   lst <- list(...)
-  return(squarebrackets:::.any_empty_indices(lst))
+  return(asub:::.any_empty_indices(lst))
 }
 
 
@@ -77,7 +77,7 @@ temp.fun.main <- function(x, obs, vars, f_expect, f_out) {
 #   for(i in 1:length(obs)) {
 #     for(j in 1:length(vars)) {
 #       
-#       rows <- squarebrackets:::.with_internal(x, obs[[i]], sys.call())
+#       rows <- asub:::.with_internal(x, obs[[i]], sys.call())
 #       cols <- vapply(x, vars[[j]], logical(1L))
 #       
 #       rp <- lapply(pre_subset_df(x, row = obs[[i]], col = vars[[j]]), \(x)x[1])

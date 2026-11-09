@@ -42,7 +42,7 @@ Returns \code{FALSE} otherwise. \cr \cr
 The \code{mutatomic} class is a class of mutable atomic array-like objects. \cr
 It works exactly the same in all aspects as regular atomic vectors and arrays. \cr
 There is only one real difference: \cr
-Pass-by-reference functions in 'squarebrackets'
+Pass-by-reference functions in 'asub'
 only accept atomic objects when they are of class \code{mutatomic},
 for greater safety. \cr
 In all other aspects, \code{mutatomic} objects are the same as R's regular atomic objects,
@@ -95,7 +95,7 @@ which is not supported by the \code{mutatomic} class.
 
 \itemize{
 \item Always use
-the exported functions given by 'squarebrackets'
+the exported functions given by 'asub'
 to create a \code{mutatomic} object,
 as they make necessary safety checks.
 \item Mutable objects that can only exist as vectors can be modified via functions from the 'data.table' or 'collapse' packages.
@@ -104,7 +104,7 @@ as they make necessary safety checks.
 this may break or corrupt it's interactions with methods
 (like the \code{[} and \code{print()} methods),
 coercions (like \code{as.data.frame()}), and array manipulators (like \code{aperm()}). \cr
-'squarebrackets' does not allow such sloppiness,
+'asub' does not allow such sloppiness,
 and thus strictly consider factors and date-time objects to be vectors but not 'array-like'. \cr
 \item It would not make much sense to make factors dimensional,
 since they are primarily used to represent a dummy matrix for statistical modelling. \cr

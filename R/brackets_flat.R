@@ -29,6 +29,7 @@
     value <- rp
   }
   else {
+    if(is.list(x_shadow)) tf <- .funply(tf)
     tf_expr <- substitute(
       tf(X[indices]),
       list(tf = tf, X = x_expr, indices = indices)
@@ -36,7 +37,7 @@
     value <- eval(tf_expr, env)
   }
   
-  .check_rp(x_shadow, value, n.i, sys.call())
+  .check_rp(x_shadow, value, n.i, abortcall)
   
   expr <- substitute(
     X[indices] <- value,

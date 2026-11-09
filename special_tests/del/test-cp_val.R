@@ -6,7 +6,7 @@ errorfun <- function(tt) {
 }
 
 enumerate <- 0L
-.cp_val <- squarebrackets:::.cp_val
+.cp_val <- asub:::.cp_val
 
 
 

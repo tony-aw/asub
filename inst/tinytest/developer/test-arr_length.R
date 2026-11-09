@@ -1,5 +1,5 @@
 
-.arr_length <- squarebrackets:::.arr_length
+.arr_length <- asub:::.arr_length
 
 
 

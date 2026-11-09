@@ -19,16 +19,6 @@ expect_error(
   pattern = pattern,
   fixed = TRUE
 )
-expect_error(
-  long_set(x, stride_v(x, v = 10), rp = -1),
-  pattern = pattern,
-  fixed = TRUE
-)
-expect_error(
-  long_set(x, stride_v(x, v = 1), rp = -1),
-  pattern = pattern,
-  fixed = TRUE
-)
 
 
 x <- data.frame(a = letters[1:10], b = 1:10)
@@ -41,7 +31,7 @@ expect_error(
   ii_set(x, i = "a", rp = letters[11:20])
 )
 
-enumerate <- enumerate + 10
+enumerate <- enumerate + 5L
 
 
 # not a variable errors ====
@@ -57,20 +47,13 @@ expect_error(
   tt_set(as.mutatomic(matrix(1:10)), 1, rp = -1),
   pattern = "only objects that exist as variables can be modified by reference"
 )
-expect_error(
-  long_set(as.mutatomic(1:10), ~1:10:1:1, rp = -1),
-  pattern = "only objects that exist as variables can be modified by reference"
-)
-expect_error(
-  long_set(as.mutatomic(1:10), stride_v(x, v = 1), rp = -1),
-  pattern = "only objects that exist as variables can be modified by reference"
-)
+
 expect_error(
   tt_set(data.table::data.table(a = letters, b = 1:26), col = 2, rp = -1),
   pattern = "only objects that exist as variables can be modified by reference"
 )
 
-enumerate <- enumerate + 6L
+enumerate <- enumerate + 4L
 
 
 # cannot change value of locked binding for  errors ====
@@ -88,14 +71,6 @@ expect_error(
   tt_set(x, 1, rp = -1),
   pattern = "cannot change value of locked binding for "
 )
-expect_error(
-  long_set(x, stride_seq(1, 10), rp = -1),
-  pattern = "cannot change value of locked binding for "
-)
-expect_error(
-  long_set(x, stride_v(x, v = 1), rp = -1),
-  pattern = "cannot change value of locked binding for "
-)
 rm(list = "x")
 
 x <- data.table::data.table(a = letters, b = 1:26)
@@ -105,7 +80,7 @@ expect_error(
   pattern = "cannot change value of locked binding for "
 )
 rm(list = "x")
-enumerate <- enumerate + 6L
+enumerate <- enumerate + 4L
 
 
 

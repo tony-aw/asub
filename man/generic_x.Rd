@@ -26,13 +26,13 @@ tt_x(x, row = NULL, col = NULL, use = 1:2, ...)
 \method{tt_x}{data.frame}(x, row = NULL, col = NULL, use = 1:2, ...)
 }
 \arguments{
-\item{x}{see \link{squarebrackets_supported_structures}.}
+\item{x}{see \link{asub_supported_structures}.}
 
-\item{i, use, s, row, col}{See \link{squarebrackets_index_args}. \cr
+\item{i, use, s, row, col}{See \link{asub_index_args}. \cr
 Duplicates are allowed, resulting in duplicated indices. \cr
 An empty index selection results in an empty object of length 0. \cr}
 
-\item{...}{see \link{squarebrackets_ellipsis}.}
+\item{...}{see \link{asub_ellipsis}.}
 }
 \value{
 Returns a copy of the sub-setted object.
@@ -103,7 +103,7 @@ ii_x(obj, i = \(x)x > 5)
 obj <- data.frame(a = 1:10, b = letters[1:10], c = 11:20, d = factor(letters[1:10]))
 print(obj)
 tt_x(obj, 1:3, 1:3)
-tt_x(obj, with(obj,  (a > 5) & (c < 19)), is.numeric)
+tt_x(obj, ~ (a > 5) & (c < 19), is.numeric)
 
 
 }

@@ -18,20 +18,14 @@ dt_aggr(
   keyby = FALSE
 )
 
-dt_setcoe(
-  x,
-  col = NULL,
-  use = 2L,
-  v,
-  chkdup = getOption("squarebrackets.chkdup", FALSE)
-)
+dt_setcoe(x, col = NULL, use = 2L, v, chkdup = getOption("asub.chkdup", FALSE))
 
 dt_setmutate(x, mutations)
 }
 \arguments{
 \item{x}{a \code{data.table} or \code{tidytable}.}
 
-\item{row, col, use}{see \link{squarebrackets_index_args}. \cr
+\item{row, col, use}{see \link{asub_index_args}. \cr
 For \code{dt_setcoe()}, \code{use} must be either a scalar positive number to select columns,
 or a scalar negative number to exclude columns.}
 
@@ -50,8 +44,8 @@ indicating if the aggregated result should be ordered by the columns specified i
 
 \item{v}{the coercive transformation function}
 
-\item{chkdup}{see \link{squarebrackets_options}. \cr
-\ifelse{html}{\figure{for_performance-set_to_FALSE-red.svg}{options: alt='[for performance: set to FALSE]'}}{\link[=squarebrackets_help]{for performance: set to FALSE}} \cr}
+\item{chkdup}{see \link{asub_options}. \cr
+\ifelse{html}{\figure{for_performance-set_to_FALSE-red.svg}{options: alt='[for performance: set to FALSE]'}}{\link[=asub_help]{for performance: set to FALSE}} \cr}
 
 \item{mutations}{a named list, or a formula that evaluates to a named list. \cr
 List names that correspond to existing columns, will modify those columns. \cr
@@ -76,17 +70,17 @@ Since these functions return void, you'll just get \code{NULL}. \cr \cr
 Functional forms of special data.table operations. \cr
 These functions do not use Non-Standard Evaluation. \cr
 These functions also benefit from the security measures that
-'squarebrackets' implements for
-the \link[=squarebrackets_PassByReference]{pass-by-reference semantics}. \cr
+'asub' implements for
+the \link[=asub_PassByReference]{pass-by-reference semantics}. \cr
 \itemize{
 \item \code{dt_aggr()}
 aggregates a data.table or tidytable, applying functions over columns specified in \code{col}.
 \item \code{dt_setcoe()}
 coercively transforms whole columns of a data.table,
-using \link[=squarebrackets_PassByReference]{pass-by-reference semantics}.
+using \link[=asub_PassByReference]{pass-by-reference semantics}.
 \item \code{dt_setmutate()} modifies, adds, or removes columns,
 possibly based on other existing columns,
-using \link[=squarebrackets_PassByReference]{pass-by-reference semantics}. \cr \cr
+using \link[=asub_PassByReference]{pass-by-reference semantics}. \cr \cr
 }
 }
 \examples{

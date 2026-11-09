@@ -77,7 +77,7 @@ sys.source(file.path(getwd(), "source", "sourcetest-elements.R"), envir = enviro
 # test matrix & arrays ====
 
 rep3.bind <- function(x, dim) {
-  return(squarebrackets:::.abind(n(x, x, x), along = dim))
+  return(asub:::.abind(n(x, x, x), along = dim))
 }
 
 

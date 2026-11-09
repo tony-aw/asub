@@ -95,20 +95,6 @@
   return(out)
 }
 
-#' @keywords internal
-#' @noRd
-.with_array <- function(x, keywords, form, abortcall) {
-  if(!is.formula(form)) {
-    stop(simpleError("invalid formula given"))
-  }
-  if(length(form) != 2L) {
-    stop(simpleError("invalid formula given", call = abortcall))
-  }
-  env <- environment(form)
-  out <- eval(form[[2L]], keywords, enclos = env)
-  environment(form) <- NULL
-  return(out)
-}
 
 #' @keywords internal
 #' @noRd

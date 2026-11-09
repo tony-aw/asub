@@ -17,8 +17,6 @@ using namespace Rcpp;
 
 
 macros_arrays <- readr::read_file("macros_arrays.txt")
-macros_stridev <- readr::read_file("macros_stridev.txt")
-macros_slice <- readr::read_file("macros_slice.txt")
 
 macro_set_atomic <- "
 
@@ -31,8 +29,6 @@ macro_set_atomic <- "
 macros <- stri_c(
   macro_set_atomic,
   macros_arrays,
-  macros_stridev,
-  macros_slice,
   collapse = "\n\n"
 )
 cat(macros)
@@ -53,8 +49,8 @@ Rcpp::sourceCpp(code = stri_c(header, macros, testfun, collapse = "\n"))
 
 header_macro <- stri_c("
 
-#ifndef SQUAREBRACKETS_H
-#define SQUAREBRACKETS_H
+#ifndef asub_H
+#define asub_H
 
 ",
                  
@@ -72,5 +68,5 @@ cat(header_macro)
 Rcpp::sourceCpp(code = stri_c(header, header_macro))
 
 setwd("..")
-readr::write_file(header_macro, "src/squarebrackets.h")
+readr::write_file(header_macro, "src/asub.h")
 

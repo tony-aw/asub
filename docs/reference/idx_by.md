@@ -10,7 +10,7 @@ Given:
 
 the `idx_by()` function takes `indices` **per group** `grp`.  
 The result of `idx_by()` can be supplied to the indexing arguments (see
-[squarebrackets_index_args](https://tony-aw.github.io/squarebrackets/reference/aaa04_squarebrackets_index_args.md))
+[asub_index_args](https://tony-aw.github.io/asub/reference/aaa04_asub_index_args.md))
 to perform **grouped** subset operations.  
   
 

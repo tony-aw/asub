@@ -1,48 +1,18 @@
-#' Array Shadow
-#'
-#' @description
-#' The Array Shadow object is a "shadow" of an vector or array `x`: \cr
-#' It has the same (dim)names as `x`, and pretends to have the same length and dimensions. \cr
-#' But it holds no actual data. \cr
-#' 
-#' @param type the type of the vector/array (see \link[base]{atomic} and \link[base]{list}).
-#' @param length the length of the vector/array.
-#' @param names the names of the vector/array.
-#' @param dim the dimensions of the vector/array.
-#' @param dimnames the `dimnames` of the vector/array.
-#' @param oldClass the class attribute of the vector/array.
-#' @param x_expr the substituted name of the vector/array.
-#' @param env the environment where the vector/array name (`x_expr`) actually lives. \cr
-#' 
-#' 
-#' 
-#' @returns
-#' The "shadow" of the vector/array.
-#'
-#'
-#' @example inst/examples/arrayshadow.R
-#' 
-
-
-#' @name ArrayShadow
-NULL
-
-
-
-#' @rdname ArrayShadow
-#' @export
-cast_ArrayShadow <- function(type, length, dim, names, dimnames, oldClass) {
+#' @keywords internal
+#' @noRd
+cast_ArrayShadow <- function(type, length, dim, names, dimnames, comment, oldClass) {
   structure(vector(type, 1L), 
             shadow_len = length,
             shadow_dim = dim,
             shadow_nms = names,
-            shadow_dimnames = dimnames, 
+            shadow_dimnames = dimnames,
+            comment = comment,
             class = c("ArrayShadow", oldClass))
 }
 
 
-#' @rdname ArrayShadow
-#' @export
+#' @keywords internal
+#' @noRd
 cast_ArrayShadow2 <- function(x_expr, env) {
   
   meta_expr <- substitute(
@@ -52,6 +22,7 @@ cast_ArrayShadow2 <- function(x_expr, env) {
       dim = base::dim(x_expr),
       names = base::names(x_expr),
       dimnames = base::dimnames(x_expr),
+      comment = base::comment(x_expr),
       oldClass = base::oldClass(x_expr)
     ), 
     list(x_expr = x_expr)
@@ -62,14 +33,35 @@ cast_ArrayShadow2 <- function(x_expr, env) {
   x_dim <- x_meta$dim
   x_names <- x_meta$names
   x_dimnames <- x_meta$dimnames
+  x_comment <- x_meta$comment
   x_oldClass <- x_meta$oldClass
   
   x_shadow <- cast_ArrayShadow(
-    x_type, x_len, x_dim, x_names, x_dimnames, x_oldClass
+    x_type, x_len, x_dim, x_names, x_dimnames, x_comment, x_oldClass
   )
   return(x_shadow)
 }
 
 
+
+#' @export
+length.ArrayShadow <- function(x) {
+  attr(x, "shadow_len")
+}
+
+#' @export
+names.ArrayShadow <- function(x) {
+  attr(x, "shadow_nms")
+}
+
+#' @export
+dim.ArrayShadow <- function(x) {
+  attr(x, "shadow_dim")
+}
+
+#' @export
+dimnames.ArrayShadow <- function(x) {
+  attr(x, "shadow_dimnames")
+}
 
 

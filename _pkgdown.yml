@@ -14,26 +14,25 @@ home:
     structure: [links, license, community, citation, authors, dev, toc]
 search:
   exclude: ['vignettes/*']
-url: https://tony-aw.github.io/squarebrackets
+url: https://tony-aw.github.io/asub
 reference:
 - title: Overview Help Pages
   contents:
-  - '`aaa00_squarebrackets_help`'
-  - '`aaa01_squarebrackets_methods`'
-  - '`aaa02_squarebrackets_index_fundamentals`'
-  - '`aaa11_squarebrackets_keywords`'
+  - '`aaa00_asub_help`'
+  - '`aaa01_asub_methods`'
+  - '`aaa02_asub_index_fundamentals`'
+  - '`aaa11_asub_keywords`'
 - title: Arguments Help Pages
   contents:
-  - '`aaa03_squarebrackets_supported_structures`'
-  - '`aaa04_squarebrackets_index_args`'
-  - '`aaa05_squarebrackets_modify`'
-  - '`aaa06_squarebrackets_options`'
-  - '`aaa07_squarebrackets_ellipsis`'
-  - '`aaa08_squarebrackets_stride`'
+  - '`aaa03_asub_supported_structures`'
+  - '`aaa04_asub_index_args`'
+  - '`aaa05_asub_modify`'
+  - '`aaa06_asub_options`'
+  - '`aaa07_asub_ellipsis`'
 - title: Additional Help Pages
   contents:
-  - '`aaa09_squarebrackets_PassByReference`'
-  - '`aaa10_squarebrackets_coercion`'
+  - '`aaa09_asub_PassByReference`'
+  - '`aaa10_asub_coercion`'
 - title: Main Methods
   contents:
   - '`ii_x`'
@@ -41,11 +40,6 @@ reference:
   - '`ii_set`'
 - title: Specialized Methods
   contents:
-  - '`long`'
-  - '`stride_eval`'
-  - '`stride_v`'
-  - '`stride_seq`'
-  - '`stride_ptrn`'
   - '`lst_rec`'
   - '`dt`'
 - title: Other Methods
@@ -70,5 +64,4 @@ reference:
   - '`tci_chr`'
   - '`ci_ii`'
   - '`indx_x`'
-  - '`ArrayShadow`'
   

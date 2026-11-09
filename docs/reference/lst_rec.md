@@ -44,7 +44,7 @@ lst_recin(x, rec, ..., rp, tf)
 - ...:
 
   see
-  [squarebrackets_ellipsis](https://tony-aw.github.io/squarebrackets/reference/aaa07_squarebrackets_ellipsis.md).
+  [asub_ellipsis](https://tony-aw.github.io/asub/reference/aaa07_asub_ellipsis.md).
 
 - rec:
 

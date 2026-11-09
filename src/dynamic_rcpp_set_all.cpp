@@ -2,7 +2,7 @@
 
 #include <Rcpp.h>
 
-#include "squarebrackets.h"
+#include "asub.h"
 
 using namespace Rcpp;
 
@@ -153,6 +153,7 @@ inline void rcpp_set_all_Character(
   
   R_xlen_t n = Rf_xlength(x);
   
+  // SEXP *px = STRING_PTR(x);
   const SEXP *prp = STRING_PTR_RO(rp);
 
   if(Rf_xlength(rp) == n) {

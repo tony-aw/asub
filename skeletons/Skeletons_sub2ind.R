@@ -5,7 +5,7 @@ library(stringi)
 # set-up ====
 #
 
-macros <- readr::read_file("macros.txt")
+macros <- readr::read_file("macros_arrays.txt")
 
 header_for_sourcing <- stri_c(
   "
@@ -23,7 +23,7 @@ header_for_package <- "
 
 #include <Rcpp.h>
 
-#include \"squarebrackets.h\"
+#include \"asub.h\"
 
 using namespace Rcpp;
 

@@ -4,217 +4,127 @@
 #' @keywords internal
 #' @noRd
 .rcpp_set_all_atomic <- function(x, rp) {
-    invisible(.Call(`_squarebrackets_rcpp_set_all_atomic`, x, rp))
+    invisible(.Call(`_asub_rcpp_set_all_atomic`, x, rp))
 }
 
 #' @keywords internal
 #' @noRd
 .rcpp_set_array_d_atomic <- function(x, sub, dimcumprod, rp) {
-    invisible(.Call(`_squarebrackets_rcpp_set_array_d_atomic`, x, sub, dimcumprod, rp))
+    invisible(.Call(`_asub_rcpp_set_array_d_atomic`, x, sub, dimcumprod, rp))
 }
 
 #' @keywords internal
 #' @noRd
 .rcpp_set_array_general_atomic <- function(x, s, xdims, rp) {
-    invisible(.Call(`_squarebrackets_rcpp_set_array_general_atomic`, x, s, xdims, rp))
+    invisible(.Call(`_asub_rcpp_set_array_general_atomic`, x, s, xdims, rp))
 }
 
 #' @keywords internal
 #' @noRd
 .rcpp_set_vind_32_atomic <- function(x, ind, rp) {
-    invisible(.Call(`_squarebrackets_rcpp_set_vind_32_atomic`, x, ind, rp))
+    invisible(.Call(`_asub_rcpp_set_vind_32_atomic`, x, ind, rp))
 }
 
 #' @keywords internal
 #' @noRd
 .rcpp_set_vind_64_atomic <- function(x, ind, rp) {
-    invisible(.Call(`_squarebrackets_rcpp_set_vind_64_atomic`, x, ind, rp))
-}
-
-#' @keywords internal
-#' @noRd
-.rcpp_stride_get_Rxlent <- function(stride, arg) {
-    .Call(`_squarebrackets_rcpp_stride_get_Rxlent`, stride, arg)
-}
-
-#' @keywords internal
-#' @noRd
-.rcpp_stride_get_pattern <- function(stride) {
-    .Call(`_squarebrackets_rcpp_stride_get_pattern`, stride)
-}
-
-#' @keywords internal
-#' @noRd
-.rcpp_slice_seq_x_atomic <- function(x, stride, use) {
-    .Call(`_squarebrackets_rcpp_slice_seq_x_atomic`, x, stride, use)
-}
-
-#' @keywords internal
-#' @noRd
-.rcpp_slice_seq_set_atomic <- function(x, rp, stride, use) {
-    invisible(.Call(`_squarebrackets_rcpp_slice_seq_set_atomic`, x, rp, stride, use))
-}
-
-#' @keywords internal
-#' @noRd
-.rcpp_slice_ptrn_x_atomic <- function(x, stride, use) {
-    .Call(`_squarebrackets_rcpp_slice_ptrn_x_atomic`, x, stride, use)
-}
-
-#' @keywords internal
-#' @noRd
-.rcpp_slice_ptrn_set_atomic <- function(x, rp, stride, use) {
-    invisible(.Call(`_squarebrackets_rcpp_slice_ptrn_set_atomic`, x, rp, stride, use))
-}
-
-#' @keywords internal
-#' @noRd
-.rcpp_slicev_x_atomic <- function(x, preplist, prepvector, pool) {
-    .Call(`_squarebrackets_rcpp_slicev_x_atomic`, x, preplist, prepvector, pool)
-}
-
-#' @keywords internal
-#' @noRd
-.rcpp_slicev_set_atomic <- function(x, rp, preplist, prepvector, pool) {
-    invisible(.Call(`_squarebrackets_rcpp_slicev_set_atomic`, x, rp, preplist, prepvector, pool))
+    invisible(.Call(`_asub_rcpp_set_vind_64_atomic`, x, ind, rp))
 }
 
 #' @keywords internal
 #' @noRd
 .rcpp_address <- function(x) {
-    .Call(`_squarebrackets_rcpp_address`, x)
+    .Call(`_asub_rcpp_address`, x)
 }
 
 #' @keywords internal
 #' @noRd
 .rcpp_list_bindings <- function(ref_address, env, ls) {
-    .Call(`_squarebrackets_rcpp_list_bindings`, ref_address, env, ls)
+    .Call(`_asub_rcpp_list_bindings`, ref_address, env, ls)
 }
 
 #' @keywords internal
 #' @noRd
 .C_prod_int <- function(x, start, end) {
-    .Call(`_squarebrackets_C_prod_int`, x, start, end)
+    .Call(`_asub_C_prod_int`, x, start, end)
 }
 
 #' @keywords internal
 #' @noRd
 .C_pre_coord2ind <- function(ind, coord, myprod) {
-    invisible(.Call(`_squarebrackets_C_pre_coord2ind`, ind, coord, myprod))
+    invisible(.Call(`_asub_C_pre_coord2ind`, ind, coord, myprod))
 }
 
 #' @keywords internal
 #' @noRd
 .rcpp_coord2ind <- function(ind, coord, xdim) {
-    .Call(`_squarebrackets_rcpp_coord2ind`, ind, coord, xdim)
+    .Call(`_asub_rcpp_coord2ind`, ind, coord, xdim)
 }
 
 #' @keywords internal
 NULL
 
 .rcpp_ptrn_shift <- function(ptrn, start, end) {
-    .Call(`_squarebrackets_rcpp_ptrn_shift`, ptrn, start, end)
+    .Call(`_asub_rcpp_ptrn_shift`, ptrn, start, end)
 }
 
 #' @keywords internal
 #' @noRd
 .rcpp_serial <- function(x) {
-    .Call(`_squarebrackets_rcpp_serial`, x)
+    .Call(`_asub_rcpp_serial`, x)
 }
 
 #' @keywords internal
 #' @noRd
 .rcpp_is_ma <- function(x) {
-    .Call(`_squarebrackets_rcpp_is_ma`, x)
+    .Call(`_asub_rcpp_is_ma`, x)
 }
 
 #' @keywords internal
 #' @noRd
 .rcpp_set_ma <- function(x, newclass) {
-    invisible(.Call(`_squarebrackets_rcpp_set_ma`, x, newclass))
-}
-
-#' @keywords internal
-NULL
-
-#' @keywords internal
-NULL
-
-#' @keywords internal
-NULL
-
-#' @keywords internal
-NULL
-
-#' @keywords internal
-NULL
-
-#' @keywords internal
-NULL
-
-.rcpp_stridev_chunks <- function(y) {
-    .Call(`_squarebrackets_rcpp_stridev_chunks`, y)
-}
-
-.rcpp_stridev_preplist <- function(y, v, chunks, condition, na) {
-    .Call(`_squarebrackets_rcpp_stridev_preplist`, y, v, chunks, condition, na)
-}
-
-.rcpp_stridev_prepvector <- function(y, prep) {
-    .Call(`_squarebrackets_rcpp_stridev_prepvector`, y, prep)
-}
-
-.rcpp_stridev_transfer_bits <- function(b32, out, startpos, endpos) {
-    invisible(.Call(`_squarebrackets_rcpp_stridev_transfer_bits`, b32, out, startpos, endpos))
-}
-
-.rcpp_stridev_write_bits <- function(y, v, condition, na, startpos, endpos) {
-    .Call(`_squarebrackets_rcpp_stridev_write_bits`, y, v, condition, na, startpos, endpos)
-}
-
-.rcpp_stridev_pool <- function(y, v, preplist, prepvector, condition, na) {
-    .Call(`_squarebrackets_rcpp_stridev_pool`, y, v, preplist, prepvector, condition, na)
-}
-
-#' @keywords internal
-#' @noRd
-.rcpp_sub2coord <- function(lst, nrow, ncol, lens, reps_each, reps_whole) {
-    .Call(`_squarebrackets_rcpp_sub2coord`, lst, nrow, ncol, lens, reps_each, reps_whole)
+    invisible(.Call(`_asub_rcpp_set_ma`, x, newclass))
 }
 
 #' @keywords internal
 #' @noRd
 .rcpp_sub2ind_d_32 <- function(sub, dimcumprod) {
-    .Call(`_squarebrackets_rcpp_sub2ind_d_32`, sub, dimcumprod)
+    .Call(`_asub_rcpp_ss2ii_d_32`, sub, dimcumprod)
 }
 
 #' @keywords internal
 #' @noRd
 .rcpp_sub2ind_d_64 <- function(sub, dimcumprod) {
-    .Call(`_squarebrackets_rcpp_sub2ind_d_64`, sub, dimcumprod)
+    .Call(`_asub_rcpp_ss2ii_d_64`, sub, dimcumprod)
+}
+
+#' @keywords internal
+#' @noRd
+.rcpp_sub2coord <- function(lst, nrow, ncol, lens, reps_each, reps_whole) {
+    .Call(`_asub_rcpp_sub2coord`, lst, nrow, ncol, lens, reps_each, reps_whole)
 }
 
 #' @keywords internal
 #' @noRd
 .C_sub2ind_setrange64 <- function(out, start, end, each, myprod, rp) {
-    invisible(.Call(`_squarebrackets_C_sub2ind_setrange64`, out, start, end, each, myprod, rp))
+    invisible(.Call(`_asub_C_sub2ind_setrange64`, out, start, end, each, myprod, rp))
 }
 
 #' @keywords internal
 #' @noRd
 .rcpp_sub2ind_general64 <- function(lst, total, reps_each, reps_whole, xdim, dimcumprod) {
-    .Call(`_squarebrackets_rcpp_sub2ind_general64`, lst, total, reps_each, reps_whole, xdim, dimcumprod)
+    .Call(`_asub_rcpp_sub2ind_general64`, lst, total, reps_each, reps_whole, xdim, dimcumprod)
 }
 
 #' @keywords internal
 #' @noRd
 .C_sub2ind_setrange32 <- function(out, start, end, each, myprod, rp) {
-    invisible(.Call(`_squarebrackets_C_sub2ind_setrange32`, out, start, end, each, myprod, rp))
+    invisible(.Call(`_asub_C_sub2ind_setrange32`, out, start, end, each, myprod, rp))
 }
 
 #' @keywords internal
 #' @noRd
 .rcpp_sub2ind_general32 <- function(lst, total, reps_each, reps_whole, xdim, dimcumprod) {
-    .Call(`_squarebrackets_rcpp_sub2ind_general32`, lst, total, reps_each, reps_whole, xdim, dimcumprod)
+    .Call(`_asub_rcpp_sub2ind_general32`, lst, total, reps_each, reps_whole, xdim, dimcumprod)
 }
 

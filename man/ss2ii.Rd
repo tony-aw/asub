@@ -40,7 +40,7 @@ The number of columns of \code{coord} must be equal to the length of \code{x.dim
 \item{checks}{Boolean, indicating if arguments checks should be performed. \cr
 Defaults to \code{TRUE}. \cr
 Can be set to \code{FALSE} for minor speed improvements. \cr
-\ifelse{html}{\figure{for_performance-set_to_FALSE-red.svg}{options: alt='[for performance: set to FALSE]'}}{\link[=squarebrackets_help]{for performance: set to FALSE}} \cr}
+\ifelse{html}{\figure{for_performance-set_to_FALSE-red.svg}{options: alt='[for performance: set to FALSE]'}}{\link[=asub_help]{for performance: set to FALSE}} \cr}
 
 \item{ind}{an integer vector, giving the interior position indices to convert.}
 }
@@ -108,7 +108,7 @@ a 4-rows-by-5-columns matrix, is as follows:
 }\if{html}{\out{</div>}}
 
 So in a 4 by 5 matrix, subscript \verb{[1, 2]} corresponds to interior index \code{5}. \cr
-Array subscripting in 'squarebrackets' also follows this standard convention. \cr
+Array subscripting in 'asub' also follows this standard convention. \cr
 \cr
 }
 \note{

@@ -2,9 +2,9 @@
 #'
 #' @description
 #' Functions to rename a
-#' \link[=squarebrackets_supported_structures]{supported mutable object}
+#' \link[=asub_supported_structures]{supported mutable object}
 #' using
-#' \link[=squarebrackets_PassByReference]{pass-by-reference semantics}:
+#' \link[=asub_PassByReference]{pass-by-reference semantics}:
 #' 
 #'  * `sb_setFlatnames()` renames the (flat) names of a `mutatomic` object. 
 #'  * `sb_setDimnames()` renames the dimension names of a `mutatomic` object.
@@ -13,7 +13,7 @@
 #' 
 #'
 #' @param x a \bold{variable} belonging to one of the
-#' \link[=squarebrackets_supported_structures]{supported mutable classes}. \cr
+#' \link[=asub_supported_structures]{supported mutable classes}. \cr
 #' @param i logical, numeric, character, or imaginary indices, indicating which flatnames should be changed. \cr
 #' If `i = NULL`, the names will be completely replaced.
 #' @param newnames Atomic character vector giving the new names. \cr
@@ -34,7 +34,7 @@
 #' @param skip_absent Skip items in old that are missing
 #' (i.e. absent) in `names(x)`. \cr
 #' Default `FALSE` halts with error if any are missing.
-#' @param ... see \link{squarebrackets_ellipsis}. \cr \cr
+#' @param ... see \link{asub_ellipsis}. \cr \cr
 #' 
 #' 
 #' 

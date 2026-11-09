@@ -33,7 +33,7 @@
 #' only the first one will be selected when performing recursive indexing by name,
 #' since recursive indexing can only select a single element. \cr
 #' `NA, NaN, Inf, -Inf, NULL` are not valid values for `rec`.
-#' @param ... see \link{squarebrackets_ellipsis}.
+#' @param ... see \link{asub_ellipsis}.
 #' @param rp optional, and allows for multiple functionalities:
 #'  - In the simplest case, performs `x[[rec]] <- rp`,
 #' using R's native semantics. \cr

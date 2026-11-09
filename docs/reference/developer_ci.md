@@ -55,12 +55,12 @@ ci_df(x, row, col, use = 1:2, chkdup = FALSE, .abortcall)
 - i, s, row, col, slice, margin, use:
 
   See
-  [squarebrackets_index_args](https://tony-aw.github.io/squarebrackets/reference/aaa04_squarebrackets_index_args.md).  
+  [asub_index_args](https://tony-aw.github.io/asub/reference/aaa04_asub_index_args.md).  
 
 - chkdup:
 
   see
-  [squarebrackets_options](https://tony-aw.github.io/squarebrackets/reference/aaa06_squarebrackets_options.md).  
+  [asub_options](https://tony-aw.github.io/asub/reference/aaa06_asub_options.md).  
   ![\[for performance: set to
   FALSE\]](figures/for_performance-set_to_FALSE-red.svg)  
 

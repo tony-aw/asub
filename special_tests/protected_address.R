@@ -1,9 +1,9 @@
 # protected address ====
 x <- base::letters
 data.table::setattr(x, "class", "mutatomic")
-data.table::setattr(x, "serial", squarebrackets:::.C_serial(x))
+data.table::setattr(x, "serial", asub:::.C_serial(x))
 expect_true(
-  .rcpp_address(x) %in% squarebrackets:::.pkgenv_mutatomic[["protected"]]
+  .rcpp_address(x) %in% asub:::.pkgenv_mutatomic[["protected"]]
 )
 expect_error(
   ii_set(x, 1, rp = "xxx")

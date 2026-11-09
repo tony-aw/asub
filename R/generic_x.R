@@ -4,11 +4,11 @@
 #' Methods to extract, exchange, exclude,
 #' or duplicate (i.e. repeat x times) subsets of an object. \cr \cr
 #'
-#' @param x see \link{squarebrackets_supported_structures}.
-#' @param i,use,s,row,col See \link{squarebrackets_index_args}. \cr
+#' @param x see \link{asub_supported_structures}.
+#' @param i,use,s,row,col See \link{asub_index_args}. \cr
 #' Duplicates are allowed, resulting in duplicated indices. \cr
 #' An empty index selection results in an empty object of length 0. \cr
-#' @param ... see \link{squarebrackets_ellipsis}.
+#' @param ... see \link{asub_ellipsis}.
 #'
 #'
 #'

@@ -1,0 +1,141 @@
+#' Regarding Modification
+#'
+#'
+#' @description
+#' This help page describes the main modification semantics
+#' available in 'asub'. \cr \cr
+#' 
+#' 
+#' @section Base R's Native Modification Semantics: 
+#' For most average users, R's default copy-on-modify semantics are fine. \cr
+#' The `_mod` methods use native semantics for atomic objects,
+#' and shallow copy semantics for recursive objects. \cr
+#' \cr
+#' 
+#' @section Pass-by-Reference:
+#' 'asub' provides
+#' the `_set` methods
+#' to modify by reference,
+#' meaning no copy is made at all. \cr
+#' Pass-by-Reference is fastest and the most memory efficient. \cr
+#' But it is also more involved than the other modification forms,
+#' and requires more thought. \cr
+#' See \link{asub_PassByReference} for more information. \cr
+#' \cr
+#' 
+#' @section Arguments `rp` and `tf` for Atomic Objects:
+#' \bold{Argument `rp`} \cr
+#' The `rp` argument is used to replace the values at the specified indices
+#' with the values specified in `rp`.
+#' Using the `rp` argument in the modification methods,
+#' corresponds to something like the following: \cr
+#' 
+#' ```{r, echo = TRUE, eval = FALSE}
+#' 
+#' x[...] <- rp
+#' 
+#' ```
+#' 
+#' \bold{Argument `tf`} \cr
+#' The `tf` argument is used to transform the values at the specified indices
+#' through transformation function `tf`.
+#' Using the `tf` argument
+#' corresponds to something like the following: \cr
+#' 
+#' ```{r, echo = TRUE, eval = FALSE}
+#' 
+#' x[...] <- tf(x[...])
+#' 
+#' ```
+#' where `tf` is a function that \bold{returns} an object of appropriate type and size
+#' (so `tf` should not be a pass-by-reference function). \cr
+#' \cr
+#' 
+#' 
+#' @section Arguments `rp` and `tf` for Recursive Objects:
+#' The `rp` and `tf` arguments work mostly in the same way for recursive objects. \cr
+#' But there are some slight differences. \cr
+#' \cr
+#' \bold{Argument `rp`} \cr
+#' 'asub' demands that `rp` is always provided as a list
+#' in the S3 methods for recursive vectors, matrices, and arrays (i.e. lists). \cr
+#' This is to prevent ambiguity
+#' with respect to how the replacement is recycled or distributed over the specified indices \cr
+#' (See `Footnote 1` below). \cr
+#' \cr
+#' \bold{Argument `tf`} \cr
+#' Most functions in (base) 'R' are vectorized for atomic objects, but not for lists \cr
+#' (see `Footnote 2` below). \cr
+#' 'asub' will therefore apply transformation function `tf` via `lapply`,
+#' like so: \cr
+#' 
+#' ```{r, echo = TRUE, eval = FALSE}
+#' 
+#' x[...] <- lapply(x[...], tf)
+#' 
+#' ```
+#' 
+#' 
+#' @section Arguments `rp` and `tf` for data.frame-like Objects:
+#' Replacement and transformations
+#' in data.frame-like objects are a bit more flexible than in Lists. \cr
+#' \cr
+#' \bold{Argument `rp`} \cr
+#' `rp` is not always demanded to be a list for data.frame-like objects,
+#' only when appropriate
+#' (for example, when replacing multiple columns, or when the column itself is a list.) \cr
+#' \cr
+#' \bold{Argument `tf`} \cr
+#' Every column in a data.frame is like an element in a list. \cr
+#' Therefore, when transforming parts of a data.frame with the `tf` argument,
+#' lapply` is used for transformations across multiple columns. \cr
+#' \cr
+#' \cr
+#' 
+#' @section Recycling and Coercion:
+#' Recycling is not allowed in the modification methods. \cr
+#' So, for example, `length(rp)` must be equal to the length of the selected subset,
+#' or equal to `1`. \cr
+#' \cr
+#' When using Pass-by-Reference semantics,
+#' the user should be extra mindful of the auto-coercion rules. \cr
+#' See \link{asub_coercion} for details. \cr
+#' \cr
+#' 
+#' 
+#' @section Footnotes:
+#' \bold{Footnote 1} \cr
+#' Consider the following replacement in base 'R':
+#' 
+#' ```{r echo = TRUE, eval = FALSE}
+#' x <-list(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+#' x[1:2] <- 2:1
+#' 
+#' ```
+#' 
+#' What will happen? \cr
+#' Will the `x[1]` be `list(1:2)` and `x[2]` also be `list(1:2)`? \cr
+#' Or will `x[1]` be `list(2)` and `x[2]` be `list(1)`? \cr
+#' It turns out the latter will happen; but this is somewhat ambiguous from the code. \cr
+#' To prevent such ambiguity in your code,
+#' 'asub' demands that `rp` is always provided as a list. \cr
+#' \cr
+#' \bold{Footnote 2} \cr
+#' Most functions in (base) 'R' are vectorized for atomic objects, but not for lists. \cr
+#' One of the reasons is the following: \cr
+#' In an atomic vector `x` of some type `t`,
+#' every single element of `x` is a scalar of type `t`. \cr
+#' However, every element of some list `x` can be virtually anything: \cr
+#' an atomic object, another list,
+#' an unevaluated expression, even dark magic like `quote(expr =)`. \cr
+#' It is difficult to make a vectorized function for an object with so many unknowns. \cr 
+#' Therefore, in the vast majority of the cases,
+#' one needs to loop through the list elements. \cr
+#' \cr
+#' 
+#' 
+#' @rdname aaa05_asub_modify
+#' @name aaa05_asub_modify
+#' @concept modify
+#' @aliases asub_modify
+NULL

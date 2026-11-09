@@ -1,5 +1,5 @@
 # count number of tests
-library(squarebrackets)
+library(asub)
 library(tinytest)
 
 # set working directory to source file location

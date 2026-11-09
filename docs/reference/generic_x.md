@@ -31,19 +31,19 @@ tt_x(x, row = NULL, col = NULL, use = 1:2, ...)
 - x:
 
   see
-  [squarebrackets_supported_structures](https://tony-aw.github.io/squarebrackets/reference/aaa03_squarebrackets_supported_structures.md).
+  [asub_supported_structures](https://tony-aw.github.io/asub/reference/aaa03_asub_supported_structures.md).
 
 - i, use, s, row, col:
 
   See
-  [squarebrackets_index_args](https://tony-aw.github.io/squarebrackets/reference/aaa04_squarebrackets_index_args.md).  
+  [asub_index_args](https://tony-aw.github.io/asub/reference/aaa04_asub_index_args.md).  
   Duplicates are allowed, resulting in duplicated indices.  
   An empty index selection results in an empty object of length 0.  
 
 - ...:
 
   see
-  [squarebrackets_ellipsis](https://tony-aw.github.io/squarebrackets/reference/aaa07_squarebrackets_ellipsis.md).
+  [asub_ellipsis](https://tony-aw.github.io/asub/reference/aaa07_asub_ellipsis.md).
 
 ## Value
 
@@ -412,7 +412,7 @@ tt_x(obj, 1:3, 1:3)
 #> 1 1 a 11
 #> 2 2 b 12
 #> 3 3 c 13
-tt_x(obj, with(obj,  (a > 5) & (c < 19)), is.numeric)
+tt_x(obj, ~ (a > 5) & (c < 19), is.numeric)
 #>   a  c
 #> 1 6 16
 #> 2 7 17

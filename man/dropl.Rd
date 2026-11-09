@@ -16,7 +16,7 @@ otherwise it returns the original \code{x} unchanged. \cr
 \cr
 }
 \description{
-'squarebrackets' provides some helper functions for sub-set operations on recursive objects
+'asub' provides some helper functions for sub-set operations on recursive objects
 (lists and data.frames). \cr
 \cr
 \code{dropl(x)} returns \code{x[[1L]]} if \code{length(x) == 1}, and returns \code{x} otherwise. \cr

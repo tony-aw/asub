@@ -1,0 +1,275 @@
+#' Indexing Fundamentals of 'asub'
+#'
+#' @description
+#' This help page explains the fundamentals regarding how 'asub' treats indexing. \cr
+#' Some familiarity with base R's `[` and `[<-` operators is required to follow this help page. \cr
+#' \cr
+#' 
+#' @section Indexing Forms:
+#' 
+#' Consider the following representation of array indices for a (in this case) 4 by 5 matrix:
+#' 
+#' ```{r echo = FALSE, eval = TRUE, comment = NA}
+#' matrix(sprintf("[%d]", 1:20), 4, 5) |> noquote()
+#' ```
+#' 
+#' The numbers `1` to `20` on the interior of this representation,
+#' are referred to in this documentation as "interior indices"
+#' (abbreviated as "ii"),
+#' also known as "flat indices". \cr
+#' The numbers on the edges of this representations,
+#' `1` to `4` for the rows and `1` to `5` for the columns,
+#' are referred to in this documentation as "subscripts"
+#' (abbreviated as "ss"),
+#' also known as "dimensional indices". \cr
+#' Indexing by rows and columns, referred to as tabular tiles
+#' (abbrevated as "tt"),
+#' is a commonly used special subset of using subscripts,
+#' available only for data.frames and matrices. \cr
+#' \cr
+#' Thus 'squarebracets' supports these 3 forms of indexing: \cr
+#' Indexing by interior indices, indexing by subscripts, and tabular tiles. \cr
+#' \cr
+#' Regarding which kind of object supports which kind of indexing form:
+#' 
+#'  - Matrices, which are simply 2-dimensional arrays, support all 3 of the above given indexing forms.
+#'  - Arrays in general can always support both interior indices and subscripts.
+#'  - Dimensionless vectors (i.e. objects for which `dim()` returns `NULL`) only support interior indices.
+#'  - Data.frames only support tabular tiles. \cr \cr
+#'  
+#' Regarding which set of \link[=asub_methods]{methods} support which kind of indexing form:
+#' 
+#'  - One can operate on flat/interior indices (often simply referred to as "indices")
+#'  using the \link[=asub_methods]{ii_} methods. \cr
+#'  These primarily use the \link[=asub_index_args]{i, use} argument pair. \cr
+#'  
+#'  - One can operate on general subscripts (= dimensional indices)
+#'  using the \link[=asub_methods]{ss_} methods; \cr
+#'  These primarily use the the \link[=asub_index_args]{s, use} argument pair.
+#'  
+#'  - One can operate on tabular tiles
+#'  using the  \link[=asub_methods]{tt_} methods; \cr
+#'  These primarily use the the
+#'  \link[=asub_index_args]{row, col, use}
+#'  argument pair. \cr \cr
+#' 
+#' 
+#' For the relationship between flat/interior indices and subscripts for arrays,
+#' see the \link{ss2ii} help page. \cr
+#' \cr
+#' \cr
+#' 
+#' @section Indexing Types:
+#' Base 'R' supports indexing through `logical`, `integer`, and `character` vectors. \cr
+#' 'asub' supports these also (albeit with some improvements),
+#' but also supports some additional methods of indexing. \cr
+#' \cr
+#' \cr
+#' \bold{Whole numbers} \cr
+#' Whole numbers are the most basic form on index selection. \cr
+#' All forms of indexing in 'asub' are internally translated to integer
+#' (or double if` > (2^31 - 1)`) indexing first,
+#' ensuring consistency. \cr
+#' Indexing through integer/numeric indices in 'asub' works the same as in base 'R',
+#' except that negative values are not allowed. \cr
+#' So indexing starts at `1` and is inclusive. \cr
+#' \cr
+#' \cr
+#' \bold{Logical} \cr
+#' Selecting indices with a logical vector in 'asub' works the same as in base 'R',
+#' except that recycling is not allowed. \cr
+#' \cr
+#' \cr
+#' \bold{Characters} \cr
+#' When selecting indices using a character vector,
+#' base 'R' only selects the first matches in the names. \cr
+#' 'asub', however, selects all matches:
+#' 
+#' 
+#' ```{r}
+#' 
+#' nms <- c("a", letters[4:1], letters[1:5])
+#' x <- 1:10
+#' names(x) <- nms
+#' print(x) #' `x` has multiple elements with the name "a"
+#' 
+#' ii_x(x, "a") # extracts all indices with the name "a"
+#' 
+#' ii_x(x, c("a", "a")) # repeats all indices with the name "a"
+#' 
+#' ```
+#' 
+#' Character indices are internally translated to integer indices using
+#' \link{match_all}. \cr
+#' \cr
+#' 
+#' 
+#' 
+#' 
+#' @section Inverting:
+#' Inverting indices means to specify all elements \bold{except} the given indices. \cr
+#' Consider for example the atomic vector `month.abb` (abbreviate month names). \cr
+#' Given this vector, indices `1:5` gives `c("Jan" "Feb" "Mar" "Apr", "May")`. \cr
+#' Inverting those same indices will give `c("Jun" "Jul" "Aug" "Sep" "Oct" "Nov" "Dec")`. \cr
+#' \cr
+#' In base 'R', inverting an index is done in different ways. \cr
+#' (negative numbers for numeric indexing, negation for logical indexing,
+#' manually un-matching for character vectors). \cr
+#' \cr
+#' In 'asub', inverting is consistently done through the `use` argument: \cr
+#' A positive sign for `use` means to select the specified indices,
+#' a negative sign for `use` means to select all indices **except** the specified indices. \cr
+#' \cr
+#' 
+#' \bold{EXAMPLES}
+#' 
+#' 
+#' ```{r eval = TRUE, echo = TRUE}
+#' 
+#' x <- month.abb
+#' print(x)
+#' 
+#' 
+#' ii_x(x, 1:5) # extract first 5 elements
+#' 
+#' ii_x(x, 1:5, -1) # return WITHOUT first 5 elements
+#' 
+#' 
+#' ii_mod(x, 1:5, rp = "XXX") # replace first 5 elements
+#' print(x)
+#' 
+#' x <- month.abb
+#' ii_mod(x, 1:5, -1, rp = "XXX") # same, but for all except first 5 elements
+#' print(x)
+#' 
+#' ```
+#' 
+#' When inverting indices,
+#' the order of the indices and the presence of duplicates is irrelevant; \cr
+#' They will lead to the same result. \cr
+#' I.e., these are all equivalent:
+#' 
+#' ```{r eval = TRUE, echo = TRUE}
+#' 
+#' ii_x(x, 1:10, -1)
+#' ii_x(x, 10:1, -1)
+#' ii_x(x, rep(1:10, 5), -1)
+#' ii_x(x, rep(10:1, 5), -1)
+#' 
+#' ```
+#' 
+#' 
+#' 
+#' @section Out-of-Bounds Integers, Non-Existing Names, and NAs:
+#' 
+#'  - Integer indices that are out of bounds (including `NaN` and `NA_integer_`) always give an error.
+#'  - Character indices that specify non-existing names or `NA` returns an error. \cr
+#'  - Logical indices are translated internally to integers using \link[base]{which},
+#'  and so `NA`s are ignored. \cr \cr
+#'  
+#
+#' 
+#' 
+#' @section Regarding Performance:
+#' Integer vectors created through the `:` operator are "compact ALTREP" integer vectors,
+#' and provide the fastest way to specify indices. \cr
+#' Indexing through names (i.e. character vectors) is the slowest. \cr
+#' \cr
+#' \cr
+#' 
+#' 
+#' 
+#' @section Indexing in Recursive Subsets:
+#' Until now this help page focussed on indexing for regular (or "shallow") subsets. \cr
+#' This section will discuss indexing in recursive subsets. \cr
+#' \cr
+#' One of the differences between atomic and recursive objects,
+#' is that recursive objects support recursive subsets, while atomic objects do not. \cr
+#' \cr
+#' Bear in mind that every element in a recursive object is a reference to another object. \cr
+#' Consider the following list `x`:
+#' 
+#' ```{r}
+#' 
+#' x <- list(
+#'    A = 1:10,
+#'    B = letters,
+#'    C = list(A = 11:20, B = month.abb)
+#' )
+#' 
+#' ```
+#' 
+#' Regular subsets, AKA surface-level subset operations (`[`, `[<-` in base 'R'),
+#' operate on the recursive object itself. \cr
+#' I.e. \link{ii_x}`(x, 1)`, or equivalently `x[1]`,
+#' returns the \bold{list} `list(A = 1:10)`:
+#' 
+#' ```{r}
+#' 
+#' ii_x(x, 1) # equivalent to x[1]; returns list(A = 1:10)
+#' 
+#' ```
+#' 
+#' Recursive subset operations (`[[`, `[[<-`, and `$` in base 'R'), on the other hand,
+#' operate on an object a subset of the recursive object references to. \cr
+#' I.e. \link{lst_rec}`(x, 1)`, or equivalently `x[[1]]`,
+#' returns the \bold{integer vector} `1:10`:
+#' 
+#' ```{r}
+#' 
+#' lst_rec(x, 1) # equivalent to x[[1]]; returns 1:10
+#' 
+#' ```
+#' 
+#' Recursive objects can refer to other recursive objects,
+#' which can themselves refer to recursive objects, and so on. \cr
+#' Recursive subsets can go however deep you want. \cr
+#' So, for example,
+#' to extract the character vector `month.abb` from the aforementioned list `x`,
+#' one would need to do: \cr
+#' \link{lst_rec}`(x, c("C","B"))`, (in base R: `x[["C"]][["B"]]`):
+#' 
+#' ```{r}
+#' 
+#' lst_rec(x, c("C","B")) # equivalent to x$C$B
+#' 
+#' # or:
+#' 
+#' lst_rec(x, c(3, 2)) # equivalent to x[[3]][[2]]
+#' 
+#' ```
+#' 
+#' 
+#' \bold{LIMITATIONS} \cr
+#' Indexing in recursive subsets is significantly more limited than in regular
+#' (or "shallow") subsets: 
+#' 
+#'  - Recursive subset operations
+#'  using \link{lst_rec}/\link{lst_recin}
+#'  only support positive integer vectors and character vectors.
+#'  - Logical vectors are not supported.
+#'  - Since a recursive subset operation only operates on a single element,
+#'  specifying the index with a character vector only selects the first matching element
+#' (just like base 'R'), not all matches.
+#'  - Inverting indices is also \bold{not} available for recursive indexing.
+#'  - Unlike regular sub-setting, out-of-bounds specification for indices is acceptable,
+#'  as it can be used to add new values to lists. \cr \cr
+#' 
+#' 
+#' @section Non-Standard Evaluation:
+#' 'asub' is designed primarily for programming,
+#' and seeks to be fully programmatically friendly. \cr
+#' As part of this endeavour,
+#' 'asub' never uses Non-Standard Evaluation. \cr
+#' All input for all methods and functions in 'asub'
+#' are objects that can be stored in a variable. \cr
+#' Like atomic vectors, lists, formulas, etc. \cr
+#' \cr
+#' 
+#' 
+#' @rdname aaa02_asub_index_fundamentals
+#' @name aaa02_asub_index_fundamentals
+#' @concept index_fundamentals
+#' @aliases asub_index_fundamentals
+NULL
+

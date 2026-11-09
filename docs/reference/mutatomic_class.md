@@ -4,8 +4,8 @@ The `mutatomic` class is a class of mutable atomic array-like objects.
 It works exactly the same in all aspects as regular atomic vectors and
 arrays.  
 There is only one real difference:  
-Pass-by-reference functions in 'squarebrackets' only accept atomic
-objects when they are of class `mutatomic`, for greater safety.  
+Pass-by-reference functions in 'asub' only accept atomic objects when
+they are of class `mutatomic`, for greater safety.  
 In all other aspects, `mutatomic` objects are the same as R's regular
 atomic objects, including the behaviour of the `[<-` operator .  
   
@@ -112,8 +112,8 @@ Only objects with the following properties can be converted to
 
 ## Footnotes
 
-- Always use the exported functions given by 'squarebrackets' to create
-  a `mutatomic` object, as they make necessary safety checks.
+- Always use the exported functions given by 'asub' to create a
+  `mutatomic` object, as they make necessary safety checks.
 
 - Mutable objects that can only exist as vectors can be modified via
   functions from the 'data.table' or 'collapse' packages.
@@ -128,9 +128,8 @@ Only objects with the following properties can be converted to
   (like [`as.data.frame()`](https://rdrr.io/r/base/as.data.frame.html)),
   and array manipulators (like
   [`aperm()`](https://rdrr.io/r/base/aperm.html)).  
-  'squarebrackets' does not allow such sloppiness, and thus strictly
-  consider factors and date-time objects to be vectors but not
-  'array-like'.  
+  'asub' does not allow such sloppiness, and thus strictly consider
+  factors and date-time objects to be vectors but not 'array-like'.  
 
 - It would not make much sense to make factors dimensional, since they
   are primarily used to represent a dummy matrix for statistical
@@ -174,7 +173,6 @@ x[, 1]
 #> mutatomic 
 #> typeof:  integer 
 x[] <- as.double(x)
-#> coercing type from `integer` to `double`
 print(x)
 #>      [,1] [,2]
 #> [1,]    1    6

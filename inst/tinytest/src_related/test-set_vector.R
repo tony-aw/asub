@@ -3,7 +3,7 @@
 
 enumerate <- 0 # to count number of tests in loops
 source(file.path(getwd(), "source", "functions4testing.R"))
-.rcpp_set_vind <- squarebrackets:::.rcpp_set_vind
+.rcpp_set_vind <- asub:::.rcpp_set_vind
 
 
 # 32 bit ====

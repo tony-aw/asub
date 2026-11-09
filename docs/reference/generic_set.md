@@ -1,9 +1,9 @@
 # Methods to Modify Subsets of a Mutable Object By Reference
 
 Methods to replace or transform a subset of a [supported mutable
-object](https://tony-aw.github.io/squarebrackets/reference/aaa03_squarebrackets_supported_structures.md)
+object](https://tony-aw.github.io/asub/reference/aaa03_asub_supported_structures.md)
 using [pass-by-reference
-semantics](https://tony-aw.github.io/squarebrackets/reference/aaa09_squarebrackets_PassByReference.md).  
+semantics](https://tony-aw.github.io/asub/reference/aaa09_asub_PassByReference.md).  
 
 ## Usage
 
@@ -22,7 +22,7 @@ ii_set(
   ...,
   rp,
   tf,
-  chkdup = getOption("squarebrackets.chkdup", FALSE)
+  chkdup = getOption("asub.chkdup", FALSE)
 )
 
 # Default S3 method
@@ -33,7 +33,7 @@ ss_set(
   ...,
   rp,
   tf,
-  chkdup = getOption("squarebrackets.chkdup", FALSE)
+  chkdup = getOption("asub.chkdup", FALSE)
 )
 
 # Default S3 method
@@ -45,7 +45,7 @@ tt_set(
   ...,
   rp,
   tf,
-  chkdup = getOption("squarebrackets.chkdup", FALSE)
+  chkdup = getOption("asub.chkdup", FALSE)
 )
 
 # S3 method for class 'data.table'
@@ -57,7 +57,7 @@ tt_set(
   ...,
   rp,
   tf,
-  chkdup = getOption("squarebrackets.chkdup", FALSE)
+  chkdup = getOption("asub.chkdup", FALSE)
 )
 ```
 
@@ -66,28 +66,28 @@ tt_set(
 - x:
 
   a **variable** belonging to one of the [supported mutable
-  classes](https://tony-aw.github.io/squarebrackets/reference/aaa03_squarebrackets_supported_structures.md).  
+  classes](https://tony-aw.github.io/asub/reference/aaa03_asub_supported_structures.md).  
 
 - i, use, s, row, col:
 
   See
-  [squarebrackets_index_args](https://tony-aw.github.io/squarebrackets/reference/aaa04_squarebrackets_index_args.md).  
+  [asub_index_args](https://tony-aw.github.io/asub/reference/aaa04_asub_index_args.md).  
   An empty index selection leaves the original object unchanged.  
 
 - ...:
 
   see
-  [squarebrackets_ellipsis](https://tony-aw.github.io/squarebrackets/reference/aaa07_squarebrackets_ellipsis.md).
+  [asub_ellipsis](https://tony-aw.github.io/asub/reference/aaa07_asub_ellipsis.md).
 
 - rp, tf:
 
   see
-  [squarebrackets_modify](https://tony-aw.github.io/squarebrackets/reference/aaa05_squarebrackets_modify.md).
+  [asub_modify](https://tony-aw.github.io/asub/reference/aaa05_asub_modify.md).
 
 - chkdup:
 
   see
-  [squarebrackets_options](https://tony-aw.github.io/squarebrackets/reference/aaa06_squarebrackets_options.md).  
+  [asub_options](https://tony-aw.github.io/asub/reference/aaa06_asub_options.md).  
   ![\[for performance: set to
   FALSE\]](figures/for_performance-set_to_FALSE-red.svg)  
 
@@ -257,9 +257,9 @@ str(obj) # notice that columns "a" and "c" are INTEGER (`int`)
 #>  $ b: chr  "a" "b" "c" "d" ...
 #>  $ c: int  11 12 13 14 15 16 17 18 19 20
 #>  $ d: Factor w/ 10 levels "a","b","c","d",..: 1 2 3 4 5 6 7 8 9 10
-#>  - attr(*, ".internal.selfref")=<pointer: 0x000001b702058d30> 
+#>  - attr(*, ".internal.selfref")=<pointer: 0x0000026d77858ba0> 
 tt_set(
-  obj, with(obj,  (a >= 2) & (c <= 17)), is.numeric,
+  obj, ~  (a >= 2) & (c <= 17), is.numeric,
   tf = sqrt # WARNING: sqrt() results in `dbl`, but columns are `int`, so decimals lost
 )
 #> Warning: 1.414214 (type 'double') at RHS position 1 out-of-range(NA) or truncated (precision lost) when assigning to type 'integer' (column 1 named 'a')
@@ -286,8 +286,8 @@ str(obj)
 #>  $ b: chr  "a" "b" "c" "d" ...
 #>  $ c: num  11 12 13 14 15 16 17 18 19 20
 #>  $ d: Factor w/ 10 levels "a","b","c","d",..: 1 2 3 4 5 6 7 8 9 10
-#>  - attr(*, ".internal.selfref")=<pointer: 0x000001b702058d30> 
-tt_set(obj, with(obj,  (a >= 2) & (c <= 17)), is.numeric,
+#>  - attr(*, ".internal.selfref")=<pointer: 0x0000026d77858ba0> 
+tt_set(obj, ~  (a >= 2) & (c <= 17), is.numeric,
   tf = sqrt # SAFE: coercion performed by column first
 ) 
 print(obj)
@@ -311,7 +311,7 @@ str(obj) # notice that columns "a" and "c" are INTEGER (`int`)
 #>  $ b: chr  "a" "b" "c" "d" ...
 #>  $ c: int  11 12 13 14 15 16 17 18 19 20
 #>  $ d: Factor w/ 10 levels "a","b","c","d",..: 1 2 3 4 5 6 7 8 9 10
-#>  - attr(*, ".internal.selfref")=<pointer: 0x000001b702058d30> 
+#>  - attr(*, ".internal.selfref")=<pointer: 0x0000026d77858ba0> 
 tt_set(obj,
         col = is.numeric,
         tf = sqrt # SAFE: obs = NULL, so coercion performed
@@ -322,5 +322,5 @@ str(obj)
 #>  $ b: chr  "a" "b" "c" "d" ...
 #>  $ c: num  3.32 3.46 3.61 3.74 3.87 ...
 #>  $ d: Factor w/ 10 levels "a","b","c","d",..: 1 2 3 4 5 6 7 8 9 10
-#>  - attr(*, ".internal.selfref")=<pointer: 0x000001b702058d30> 
+#>  - attr(*, ".internal.selfref")=<pointer: 0x0000026d77858ba0> 
 ```

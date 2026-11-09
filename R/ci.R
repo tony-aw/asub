@@ -10,8 +10,8 @@
 #'
 #'
 #' @param x the object for which the indices are meant.
-#' @param i,s,row,col,slice,margin,use See \link{squarebrackets_index_args}. \cr
-#' @param chkdup see \link{squarebrackets_options}. \cr
+#' @param i,s,row,col,slice,margin,use See \link{asub_index_args}. \cr
+#' @param chkdup see \link{asub_options}. \cr
 #' `r .mybadge_performance_set2("FALSE")` \cr
 #' @param uniquely_named Boolean,
 #' indicating if the user knows a-priori that the relevant names of `x` are unique. \cr
@@ -38,8 +38,7 @@ NULL
 ci_ii <- function(
     x, i = NULL, use = 1L, chkdup = FALSE, uniquely_named = FALSE, .abortcall = sys.call()
 ) {
-  
-  is_list <- is.list(x)
+
   
   if(!is.numeric(use) || length(use) != 1 || is.na(use)) {
     stop(simpleError("`use` must be a numeric scalar", call = .abortcall))
@@ -57,18 +56,24 @@ ci_ii <- function(
     return(tci_zerolen(length(x), use))
   }
   
-  if(is.function(i) && is_list) {
+  if(is.function(i)) {
+    if(!is.list(x)) {
+      stop(simpleError("`i` can only be a function for list input", call = .abortcall))
+    }
     i <- vapply(x, i, FUN.VALUE = logical(1L), USE.NAMES = FALSE) |> unlist()
     
     if(!is.logical(i) || length(i) != length(x)) {
-      stop(simpleError("if elements are given through a function, the function must return a logical vector", call = .abortcall))
+      stop(simpleError(
+        "if elements are given through a function, the function must return a logical vector",
+        call = .abortcall
+      ))
     }
     if(use > 0L) return(which(i))
     if(use < 0L) return(collapse::whichv(i, FALSE))
   }
   
   if(is.formula(i)) {
-    i <- tci_formula(i, 0L, length(x), names(x), .abortcall)
+    i <- tci_formula(i, 0L, length(x), names(x), NULL, .abortcall)
   }
   
   if(is.atomic(i)) {
@@ -98,7 +103,7 @@ ci_margin <- function(
   }
   
   if(is.formula(slice)) {
-    slice <- tci_formula(slice, margin, dim(x)[margin], dimnames(x)[[margin]], .abortcall)
+    slice <- tci_formula(slice, margin, dim(x)[margin], dimnames(x)[[margin]], NULL, .abortcall)
   }
   
   if(is.atomic(slice)) {
@@ -167,18 +172,12 @@ ci_df <- function(x, row, col, use = 1:2, chkdup = FALSE, .abortcall) {
   
   
   # rows:
-  if(is.formula(row) && startsWith(format(row), "~~")) {
-    row <- as.formula(row[[2L]])
-    row <- .with_internal(x, row, .abortcall)
-    if(!is.logical(row)) {
-      stop(simpleError("improper formula given for `row`", call = .abortcall))
-    }
-    if(use[1] > 0) row <- which(row)
-    if(use[1] < 0) row <- collapse::whichv(row, FALSE)
+  if(is.formula(row)) {
+    row <- tci_formula(row, 1L, nrow(x), rownames(x), x, .abortcall)
   }
-  else if(!.C_is_missing_idx(row)) {
+  if(!.C_is_missing_idx(row)) {
     row <- ci_margin(
-      x, row, 1L, use[1], chkdup = FALSE, uniquely_named = TRUE, sys.call()
+      x, row, 1L, use[1], chkdup = FALSE, uniquely_named = TRUE, .abortcall
     )
   }
   

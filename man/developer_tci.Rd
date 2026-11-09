@@ -33,7 +33,7 @@ tci_chr(
   .abortcall = sys.call()
 )
 
-tci_formula(form, m, n, nms, .abortcall)
+tci_formula(form, m, n, nms, extra_vars = NULL, .abortcall)
 
 tci_zerolen(n, use = 1L)
 }
@@ -55,10 +55,10 @@ Examples:
 }}
 
 \item{use}{1 or -1, indicating how to use the indices. \cr
-See \link{squarebrackets_index_args}.}
+See \link{asub_index_args}.}
 
-\item{chkdup}{see \link{squarebrackets_options}. \cr
-\ifelse{html}{\figure{for_performance-set_to_FALSE-red.svg}{options: alt='[for performance: set to FALSE]'}}{\link[=squarebrackets_help]{for performance: set to FALSE}} \cr}
+\item{chkdup}{see \link{asub_options}. \cr
+\ifelse{html}{\figure{for_performance-set_to_FALSE-red.svg}{options: alt='[for performance: set to FALSE]'}}{\link[=asub_help]{for performance: set to FALSE}} \cr}
 
 \item{uniquely_named}{Boolean,
 indicating if the user knows a-priori that the relevant names of \code{x} are unique. \cr
@@ -70,6 +70,8 @@ But specifying \code{TRUE} when the relevant names are not unique will result in
 \item{form}{a formula; see \link{keywords}.}
 
 \item{m}{a number giving the margin; set to \code{0} for dimensionless vectors.}
+
+\item{extra_vars}{extra variables that the formula can have access to.}
 }
 \value{
 An integer vector of type-cast indices.
