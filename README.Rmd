@@ -89,7 +89,7 @@ In order to perform subset operations on some array `x` with the square brackets
 
 The `abind::asub()` function solved this issue for the `[` operator, by allowing the user to programmatically extract a sub-set of an array regardless of the number of dimensions the array has. The 'asub' package is, in fact, named after `abind::asub()`.
 
-But implementing an equivalent method for the `[<-` operator is far more difficult, and 'abind'. The primary issue is: **any function-like call** of `[<-` - whether it be `[<-(x, ...indices.., value)`, `do.call("[<-]", list(x, indices, value))`, or even `eval(quote(...)`, and so on - will **always** make a copy of the input. Always. To my knowledge, 'asub' is the first package to get around this problem in a safe way, thus giving the user the exact same semantics as the regular usage of the `[<-` operator for arrays, but without the unacceptable inefficiency of calling `[<-(x, ...indices..., value)` as a function.
+But implementing an equivalent method for the `[<-` operator is far more difficult. The primary issue is: **any function-like call** of `[<-` - whether it be `do.call("[<-]", ...)`, `eval(quote(...)`, or even `[<-(x, ...indices.., value)`, and so on - will **always** make a copy of the input. Always. To my knowledge, 'asub' is the first package to get around this problem in a safe way, thus giving the user the exact same semantics as the regular usage of the `[<-` operator for arrays, but without the unacceptable inefficiency of calling `do.call("[<-]", ...)` as a function.
 
 An additional issue with sub-set operations on arrays with an unknown number of dimensions arises when you need to specify more complex indices. Consider, for example, the following array:
 
@@ -110,13 +110,13 @@ x[c(dim(x)[1] - 1, dim(x)[1]),
 ss_x(x, ~ (.N-1):.N)
 ```
 
-Its shorter, its cleaner, and often about as fast as base 'R' (though 'asub' does have a bit more overhead than base 'R'). To be clear: 'asub' fully supports specifying indices with numeric, character, and logical indices also.
+With 'asub' it's not just shorter, but it works for arrays of any dimensionality, also about as fast as base 'R' (though 'asub' does have a bit more overhead than base 'R'). To be clear: 'asub' fully supports specifying indices with numeric, character, and logical indices also.
 
 &nbsp;
 
 ### Data.frames
 
-There are many types of data.frames. Data.frames from base 'R', tibbles (from the tidyverse), data.tables (from the tinyverse and fastverse), tidytables, as well as 'sf-' variants of these. They have different syntax AND different semantics rules regarding sub-set operations. Constantly switching between these rules can be immensely annoying.
+There are many types of data.frames. Data.frames from base 'R', tibbles (from the tidyverse), data.tables (from the tinyverse and fastverse), tidytables, as well as 'sf-' variants of these. They have different syntax *and* different semantics rules regarding sub-set operations. Constantly switching between these rules can be immensely annoying.
 
 The 'asub' package provides sub-set methods that works consistently and with the same syntax for all supported types of data.frame-like objects.
 
