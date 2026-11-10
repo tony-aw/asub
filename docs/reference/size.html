@@ -54,8 +54,6 @@ If <code>m &gt; 0</code>, <code>s()</code> gets <code>dim(x)[m]</code> of the ob
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ndim</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">rdim</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span></span>
 <span><span class="fu">s</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Default S3 method</span></span>
@@ -82,9 +80,6 @@ If <code>m &gt; 0</code>, <code>s()</code> gets <code>dim(x)[m]</code> of the ob
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>For <code>ndim()</code>: <br>
 An integer, giving the number of dimensions <code>x</code> has. <br>
-For vectors, gives <code>0L</code>. <br><br>
-For <code>rdim()</code>: <br>
-An integer vector, giving the range <code>1:ndim(x)</code>. <br>
 For vectors, gives <code>0L</code>. <br><br>
 For <code>s()</code>: <br>
 A numeric vector giving the size(s) of the object at the given margin(s).</p>

@@ -6,8 +6,8 @@
 SEXP C_match_range( SEXP o, SEXP m ) {
 
 
-  const int *restrict po = INTEGER(o);
-  const int *restrict pm = INTEGER(m);
+  const int *po = INTEGER(o);
+  const int *pm = INTEGER(m);
   
   int n = Rf_length(o);
   int countNA = 0;

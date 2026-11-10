@@ -1,8 +1,8 @@
-#' asub: Programmatically Friendly Subset Methods for Arrays and Array-like S3 Objects
+#' asub: Programmatically Friendly Subset Functions for Array-like and Data.frame-like S3 Objects
 #' 
 #' @description
 #' asub: \cr
-#' Programmatically Friendly Subset Methods for Arrays and Array-like S3 Objects. \cr
+#' Programmatically Friendly Sub-set Functions for Array-like and Data.frame-like S3 Objects. \cr
 #' \cr
 #' 
 #' ```{r echo = FALSE, eval = TRUE, results = 'asis'}
@@ -28,7 +28,7 @@
 #' \cr
 #' The Goal of the 'asub' package
 #' is not to replace the square-brackets operators,
-#' but to provide \bold{alternative} sub-setting methods and functions for arrays and array-like objects,
+#' but to provide \bold{alternative} sub-setting functions for array-like and data.frame-like objects,
 #' to be used in situations where the square bracket operators are inconvenient. \cr
 #' \cr
 #' 
@@ -125,18 +125,10 @@
 #'    No longer does one have to re-learn the different brackets-based sub-setting rules
 #'    for different types of data.frame-like objects. \cr
 #'    Powered by the subclass agnostic 'C'-code from 'collapse' and 'data.table'.
-#'  * \bold{Explicit copy semantics}:
-#'    * Sub-set operations that change its memory allocations,
-#'    always return a modified (partial) copy of the object. \cr
-#'    * For sub-set operations that just change values in-place
-#'    (similar to the `[<-` and `[[<-` methods)
-#'    the user can choose a method that modifies the object by \bold{reference},
-#'    or choose a method that returns a \bold{(partial) copy}.
 #'  * \bold{Careful handling of names}:
 #'    * Sub-setting an object by index names returns ALL matches with the given names,
 #'    not just the first.
-#'    * Data.frame-like objects (see supported classes below)
-#'    are forced to have unique column names.
+#'    * Data.frame-like objects are forced to have unique column names.
 #'  * \bold{Concise function and argument names}.
 #'  * \bold{Performance & Energy aware}: \cr
 #'  Despite the many checks performed, the functions are kept reasonably speedy,

@@ -18,10 +18,6 @@
 #' An integer, giving the number of dimensions `x` has. \cr
 #' For vectors, gives `0L`. \cr
 #' \cr
-#' For `rdim()`: \cr
-#' An integer vector, giving the range `1:ndim(x)`. \cr
-#' For vectors, gives `0L`. \cr
-#' \cr
 #' For `s()`: \cr
 #' A numeric vector giving the size(s) of the object at the given margin(s).
 #'
@@ -38,18 +34,6 @@ NULL
 #' @export
 ndim <- function(x) {
   length(dim(x))
-}
-
-#' @rdname size
-#' @export
-rdim <- function(x) {
-  if(!is.null(dim(x))) {
-    return(1:length(dim(x)))
-  }
-  else {
-    return(0L)
-  }
-  
 }
 
 

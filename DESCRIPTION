@@ -1,6 +1,6 @@
 Package: asub
 Type: Package
-Title: Programmatically Friendly Subset Methods for Array-like and Data.frame-like S3 Objects
+Title: Programmatically Friendly Sub-set Functions for Array-like and Data.frame-like S3 Objects
 Version: 0.0.0.9000
 Authors@R: c(
     person("Tony", "Wilkes",
@@ -18,27 +18,27 @@ Authors@R: c(
            role = "ctb",
            comment = "Author of included 'abind' fragments")
   )
-Description: Provides programmatically friendly subset methods for arrays and array-like S3 objects.
-    It supports array-like objects (including matrices and 1d vectors), and most types of data.frames,
+Description: Provides programmatically friendly sub-set functions for array-like and data.frame-like S3 objects.
+    These functions supports array-like objects (including matrices and 1d vectors), and most types of data.frames,
     and may be more convenient alternatives to the `[` and `[<-` operators,
     whilst maintaining similar performance.
-    Some nice properties of these methods include, but are not limited to, the following.
+    Some nice properties of these functions include, but are not limited to, the following.
       1) Performing dimensional subset operations on an array using `[` and `[<-`,
       requires a-priori knowledge on the number of dimensions the array has;
-      The 'asub' methods work on any arbitrary dimensions without requiring such prior knowledge.
+      The 'asub' functions work on any arbitrary dimensions without requiring such prior knowledge.
       2) The `[` and `[<-` operators use different rule-sets for different data.frame-like types
       (data.frames, data.tables, tibbles, tidytables, etc.);
-      The 'asub' methods use the same rule-sets for the different data.frame-like types.
+      The 'asub' functions use the same rule-sets for the different data.frame-like types.
       3) Unlike the `[` and `[<-` operators,
-      the 'asub' methods will operate on duplicate names
+      the 'asub' functions will operate on duplicate names
       (not just the first match),
       use consistent syntax for inverting indices,
       give an error for out-of-bounds indices,
       and support the use of advanced indices through formulas.
-      4) The `[<-` operator only supports copy-on-modify semantics for most classes;
-      The 'asub' methods provide explicit pass-by-reference semantics as well as R's native semantics,
+      4) The `[<-` operator only supports native copy-on-modify semantics for most classes;
+      The 'asub' functions provide explicit pass-by-reference semantics as well as R's native semantics,
       and do so safely and memory efficiently.
-      5) All of the methods provided by 'squarbrackets' are programmatically friendly
+      5) All of the functions provided by 'asub' are programmatically friendly
       (no Non-Standard Evaluation).
 License: MPL-2.0 | file LICENSE
 Encoding: UTF-8

@@ -5,24 +5,24 @@
 \alias{asub-package}
 \alias{asub}
 \alias{asub_help}
-\title{asub: Programmatically Friendly Subset Methods for Arrays and Array-like S3 Objects}
+\title{asub: Programmatically Friendly Subset Functions for Array-like and Data.frame-like S3 Objects}
 \description{
 asub: \cr
-Programmatically Friendly Subset Methods for Arrays and Array-like S3 Objects. \cr
+Programmatically Friendly Sub-set Functions for Array-like and Data.frame-like S3 Objects. \cr
 \cr
-Provides programmatically friendly subset methods for arrays and array-like S3 objects.
+Provides programmatically friendly sub-set functions for array-like and data.frame-like S3 objects.
 
-It supports array-like objects (including matrices and 1d vectors), and most types of data.frames,  and may be more convenient alternatives to the \code{[} and \verb{[<-} operators,  whilst maintaining similar performance.
+These functions supports array-like objects (including matrices and 1d vectors), and most types of data.frames,  and may be more convenient alternatives to the \code{[} and \verb{[<-} operators,  whilst maintaining similar performance.
 
-Some nice properties of these methods include, but are not limited to, the following:
+Some nice properties of these functions include, but are not limited to, the following:
 \enumerate{
-\item Performing dimensional subset operations on an array using \code{[} and \verb{[<-},    requires a-priori knowledge on the number of dimensions the array has; \cr    The 'asub' methods work on any arbitrary dimensions without requiring such prior knowledge.
+\item Performing dimensional subset operations on an array using \code{[} and \verb{[<-},    requires a-priori knowledge on the number of dimensions the array has; \cr    The 'asub' functions work on any arbitrary dimensions without requiring such prior knowledge.
 \item The \code{[} and \verb{[<-} operators use different rule-sets for different data.frame-like types
-(data.frames, data.tables, tibbles, tidytables, etc.); \cr    The 'asub' methods use the same rule-sets for the different data.frame-like types.
-\item Unlike the \code{[} and \verb{[<-} operators,    the 'asub' methods will operate on duplicate names
+(data.frames, data.tables, tibbles, tidytables, etc.); \cr    The 'asub' functions use the same rule-sets for the different data.frame-like types.
+\item Unlike the \code{[} and \verb{[<-} operators,    the 'asub' functions will operate on duplicate names
 (not just the first match),    use consistent syntax for inverting indices,    give an error for out-of-bounds indices,    and support the use of advanced indices through formulas.
-\item The \verb{[<-} operator only supports copy-on-modify semantics for most classes; \cr    The 'asub' methods provide explicit pass-by-reference semantics as well as R's native semantics,    and do so safely and memory efficiently.
-\item All of the methods provided by 'squarbrackets' are programmatically friendly
+\item The \verb{[<-} operator only supports native copy-on-modify semantics for most classes; \cr    The 'asub' functions provide explicit pass-by-reference semantics as well as R's native semantics,    and do so safely and memory efficiently.
+\item All of the functions provided by 'asub' are programmatically friendly
 (no Non-Standard Evaluation).\cr \cr
 }
 }
@@ -38,7 +38,7 @@ are occasionally less than optimally convenient for arrays. \cr
 \cr
 The Goal of the 'asub' package
 is not to replace the square-brackets operators,
-but to provide \bold{alternative} sub-setting methods and functions for arrays and array-like objects,
+but to provide \bold{alternative} sub-setting functions for array-like and data.frame-like objects,
 to be used in situations where the square bracket operators are inconvenient. \cr
 \cr
 }
@@ -144,21 +144,11 @@ No longer does one have to re-learn the different brackets-based sub-setting rul
 for different types of data.frame-like objects. \cr
 Powered by the subclass agnostic 'C'-code from 'collapse' and 'data.table'.
 }
-\item \bold{Explicit copy semantics}:
-\itemize{
-\item Sub-set operations that change its memory allocations,
-always return a modified (partial) copy of the object. \cr
-\item For sub-set operations that just change values in-place
-(similar to the \verb{[<-} and \verb{[[<-} methods)
-the user can choose a method that modifies the object by \bold{reference},
-or choose a method that returns a \bold{(partial) copy}.
-}
 \item \bold{Careful handling of names}:
 \itemize{
 \item Sub-setting an object by index names returns ALL matches with the given names,
 not just the first.
-\item Data.frame-like objects (see supported classes below)
-are forced to have unique column names.
+\item Data.frame-like objects are forced to have unique column names.
 }
 \item \bold{Concise function and argument names}.
 \item \bold{Performance & Energy aware}: \cr

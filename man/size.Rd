@@ -3,14 +3,11 @@
 \name{size}
 \alias{size}
 \alias{ndim}
-\alias{rdim}
 \alias{s}
 \alias{s.default}
 \title{Get Size Properties of an Object}
 \usage{
 ndim(x)
-
-rdim(x)
 
 s(x, ...)
 
@@ -26,10 +23,6 @@ s(x, ...)
 \value{
 For \code{ndim()}: \cr
 An integer, giving the number of dimensions \code{x} has. \cr
-For vectors, gives \code{0L}. \cr
-\cr
-For \code{rdim()}: \cr
-An integer vector, giving the range \code{1:ndim(x)}. \cr
 For vectors, gives \code{0L}. \cr
 \cr
 For \code{s()}: \cr

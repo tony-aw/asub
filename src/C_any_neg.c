@@ -9,7 +9,7 @@ R_xlen_t n = xlength(x);
 switch(TYPEOF(x)) {
   case INTSXP:
     {
-      const int *px = INTEGER_RO(x);
+      const int *restrict px = INTEGER_RO(x);
       for(R_xlen_t i = 0; i != n; ++i) { 
         if(px[i] < 0) return ScalarLogical(1);
       }
@@ -20,7 +20,7 @@ switch(TYPEOF(x)) {
   
   case REALSXP: 
     {
-      const double *px = REAL_RO(x);
+      const double *restrict px = REAL_RO(x);
       for(R_xlen_t i = 0; i != n; ++i) { 
         if(px[i] < 0) return ScalarLogical(1);
       }

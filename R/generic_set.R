@@ -50,7 +50,7 @@ ii_set <- function(x, i = NULL, use = 1, ..., rp, tf) {
 
 #' @rdname generic_set
 #' @export
-ss_set <- function(x, s = NULL, use = rdim(x), ..., rp, tf) {
+ss_set <- function(x, s = NULL, use = Inf, ..., rp, tf) {
   
   .methodcheck.ss(x, sys.call())
   .argscheck_rptf(rp, tf, sys.call())
@@ -108,7 +108,7 @@ ii_set.default <- function(
 #' @rdname generic_set
 #' @export
 ss_set.default <- function(
-    x, s = NULL, use = rdim(x), ...,  rp, tf, chkdup = getOption("asub.chkdup", FALSE)
+    x, s = NULL, use = Inf, ...,  rp, tf, chkdup = getOption("asub.chkdup", FALSE)
 ) {
   
   stopifnot_ma_safe2mutate(substitute(x), parent.frame(n = 1), sys.call())

@@ -16,9 +16,10 @@ SEXP C_any_baduse ( SEXP x, SEXP val ) {
       
       int v;
       v = Rf_asInteger(val);
-      const int *px = INTEGER_RO(x);
-      for(R_xlen_t i = 0; i != n; ++i) { 
-        if(px[i] < (-v) || px[i] > v || px[i] == 0) return Rf_ScalarLogical(1);
+      const int *restrict px = INTEGER_RO(x);
+      for(R_xlen_t i = 0; i != n; ++i) {
+        const int tempx = px[i];
+        if(tempx < (-v) || tempx > v || tempx == 0) return Rf_ScalarLogical(1);
       }
       return Rf_ScalarLogical(0);
       break;
@@ -29,9 +30,10 @@ SEXP C_any_baduse ( SEXP x, SEXP val ) {
       
       double v;
       v = Rf_asReal(val);
-      const double *px = REAL_RO(x);
-      for(R_xlen_t i = 0; i != n; ++i) { 
-        if(px[i] < (-v) || px[i] > v || px[i] == 0) return Rf_ScalarLogical(1);
+      const double *restrict px = REAL_RO(x);
+      for(R_xlen_t i = 0; i != n; ++i) {
+        const double tempx = px[i];
+        if(tempx < (-v) || tempx > v || tempx == 0) return Rf_ScalarLogical(1);
       }
       return Rf_ScalarLogical(0);
       break;

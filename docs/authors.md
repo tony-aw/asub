@@ -19,12 +19,12 @@
 Source:
 [`DESCRIPTION`](https://github.com/tony-aw/asub/blob/HEAD/DESCRIPTION)
 
-Wilkes T (2026). *asub: Programmatically Friendly Subset Methods for
+Wilkes T (2026). *asub: Programmatically Friendly Sub-set Functions for
 Array-like and Data.frame-like S3 Objects*. R package version
 0.0.0.9000, <https://github.com/tony-aw/asub/>.
 
     @Manual{,
-      title = {asub: Programmatically Friendly Subset Methods for Array-like and Data.frame-like S3 Objects},
+      title = {asub: Programmatically Friendly Sub-set Functions for Array-like and Data.frame-like S3 Objects},
       author = {Tony Wilkes},
       year = {2026},
       note = {R package version 0.0.0.9000},

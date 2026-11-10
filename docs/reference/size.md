@@ -12,8 +12,6 @@ If `m > 0`, `s()` gets `dim(x)[m]` of the object.
 ``` r
 ndim(x)
 
-rdim(x)
-
 s(x, ...)
 
 # Default S3 method
@@ -38,10 +36,6 @@ s(x, m = if (is.null(dim(x))) 0L else dim(x), ...)
 
 For `ndim()`:  
 An integer, giving the number of dimensions `x` has.  
-For vectors, gives `0L`.  
-  
-For `rdim()`:  
-An integer vector, giving the range `1:ndim(x)`.  
 For vectors, gives `0L`.  
   
 For `s()`:  

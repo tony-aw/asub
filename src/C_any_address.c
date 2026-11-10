@@ -7,7 +7,7 @@ SEXP C_any_address ( SEXP x, SEXP v ) {
 
 
 R_xlen_t n = Rf_xlength(x);
-const SEXP *px = STRING_PTR_RO(x);
+const SEXP *restrict px = STRING_PTR_RO(x);
 const SEXP pv = STRING_ELT(v, 0);
 
 for(R_xlen_t i = 0; i < n; ++i) {

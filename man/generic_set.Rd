@@ -13,7 +13,7 @@
 \usage{
 ii_set(x, i = NULL, use = 1, ..., rp, tf)
 
-ss_set(x, s = NULL, use = rdim(x), ..., rp, tf)
+ss_set(x, s = NULL, use = Inf, ..., rp, tf)
 
 tt_set(x, row = NULL, col = NULL, use = 1:2, ..., rp, tf)
 
@@ -30,7 +30,7 @@ tt_set(x, row = NULL, col = NULL, use = 1:2, ..., rp, tf)
 \method{ss_set}{default}(
   x,
   s = NULL,
-  use = rdim(x),
+  use = Inf,
   ...,
   rp,
   tf,

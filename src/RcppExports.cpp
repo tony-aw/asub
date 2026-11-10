@@ -133,19 +133,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// rcpp_ptrn_shift
-SEXP rcpp_ptrn_shift(SEXP ptrn, R_xlen_t start, R_xlen_t end);
-RcppExport SEXP _asub_rcpp_ptrn_shift(SEXP ptrnSEXP, SEXP startSEXP, SEXP endSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< SEXP >::type ptrn(ptrnSEXP);
-    Rcpp::traits::input_parameter< R_xlen_t >::type start(startSEXP);
-    Rcpp::traits::input_parameter< R_xlen_t >::type end(endSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpp_ptrn_shift(ptrn, start, end));
-    return rcpp_result_gen;
-END_RCPP
-}
 // rcpp_serial
 SEXP rcpp_serial(SEXP x);
 RcppExport SEXP _asub_rcpp_serial(SEXP xSEXP) {
@@ -311,7 +298,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_asub_C_prod_int", (DL_FUNC) &_asub_C_prod_int, 3},
     {"_asub_C_pre_coord2ind", (DL_FUNC) &_asub_C_pre_coord2ind, 3},
     {"_asub_rcpp_coord2ind", (DL_FUNC) &_asub_rcpp_coord2ind, 3},
-    {"_asub_rcpp_ptrn_shift", (DL_FUNC) &_asub_rcpp_ptrn_shift, 3},
     {"_asub_rcpp_serial", (DL_FUNC) &_asub_rcpp_serial, 1},
     {"_asub_rcpp_is_ma", (DL_FUNC) &_asub_rcpp_is_ma, 1},
     {"_asub_rcpp_set_ma", (DL_FUNC) &_asub_rcpp_set_ma, 2},

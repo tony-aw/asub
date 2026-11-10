@@ -17,29 +17,29 @@ Data.frame-like S3 Objects
 
 <p style="white-space: pre-line;">
 
-Provides programmatically friendly subset methods for arrays and
-array-like S3 objects.<br><br> It supports array-like objects (including
-matrices and 1d vectors), and most types of data.frames, and may be more
-convenient alternatives to the `[` and `[<-` operators, whilst
-maintaining similar performance.<br><br> Some nice properties of these
-methods include, but are not limited to, the following:<br><br> 1)
-Performing dimensional subset operations on an array using `[` and
-`[<-`, requires a-priori knowledge on the number of dimensions the array
-has; <br> The ‘asub’ methods work on any arbitrary dimensions without
-requiring such prior knowledge.<br><br> 2) The `[` and `[<-` operators
-use different rule-sets for different data.frame-like types
-(data.frames, data.tables, tibbles, tidytables, etc.); <br> The ‘asub’
-methods use the same rule-sets for the different data.frame-like
-types.<br><br> 3) Unlike the `[` and `[<-` operators, the ‘asub’ methods
-will operate on duplicate names (not just the first match), use
-consistent syntax for inverting indices, give an error for out-of-bounds
-indices, and support the use of advanced indices through
-formulas.<br><br> 4) The `[<-` operator only supports copy-on-modify
-semantics for most classes; <br> The ‘asub’ methods provide explicit
-pass-by-reference semantics as well as R’s native semantics, and do so
-safely and memory efficiently.<br><br> 5) All of the methods provided by
-‘squarbrackets’ are programmatically friendly (no Non-Standard
-Evaluation).
+Provides programmatically friendly sub-set functions for array-like and
+data.frame-like S3 objects.<br><br> These functions supports array-like
+objects (including matrices and 1d vectors), and most types of
+data.frames, and may be more convenient alternatives to the `[` and
+`[<-` operators, whilst maintaining similar performance.<br><br> Some
+nice properties of these functions include, but are not limited to, the
+following:<br><br> 1) Performing dimensional subset operations on an
+array using `[` and `[<-`, requires a-priori knowledge on the number of
+dimensions the array has; <br> The ‘asub’ functions work on any
+arbitrary dimensions without requiring such prior knowledge.<br><br> 2)
+The `[` and `[<-` operators use different rule-sets for different
+data.frame-like types (data.frames, data.tables, tibbles, tidytables,
+etc.); <br> The ‘asub’ functions use the same rule-sets for the
+different data.frame-like types.<br><br> 3) Unlike the `[` and `[<-`
+operators, the ‘asub’ functions will operate on duplicate names (not
+just the first match), use consistent syntax for inverting indices, give
+an error for out-of-bounds indices, and support the use of advanced
+indices through formulas.<br><br> 4) The `[<-` operator only supports
+native copy-on-modify semantics for most classes; <br> The ‘asub’
+functions provide explicit pass-by-reference semantics as well as R’s
+native semantics, and do so safely and memory efficiently.<br><br> 5)
+All of the functions provided by ‘asub’ are programmatically friendly
+(no Non-Standard Evaluation).
 
 </p>
 
@@ -62,7 +62,7 @@ operations on array-like and data.frame-like objects:
   predictable effect. No need for `quote()` `!!!`, `{{{}}}` or other
   tidy-eval nonsense.
 
-And, as is the case with all my packages, NO AI has been used at all in
+And, as is the case with all my packages, no AI has been used at all in
 developing ‘asub’.
 
  
@@ -118,14 +118,14 @@ regardless of the number of dimensions the array has. The ‘asub’ package
 is, in fact, named after `abind::asub()`.
 
 But implementing an equivalent method for the `[<-` operator is far more
-difficult. The primary issue is: **any function-like call** of `[<-` -
-whether it be `do.call("[<-]", ...)`, `eval(quote(...)`, or even
-`[<-(x, ...indices.., value)`, and so on - will **always** make a copy
-of the input. Always. To my knowledge, ‘asub’ is the first package to
-get around this problem in a safe way, thus giving the user the exact
+difficult. The primary issue is: any programmatic function-like call of
+`[<-` - whether it be `do.call("[<-", ...)`, `eval(quote(...)`, or even
+`[<-(x, ...indices.., value)`, and so on - will always make a copy of
+the input. ‘asub’ is one of the few (or perhaps even the only?) package
+to get around this problem in a safe way, thus giving the user the exact
 same semantics as the regular usage of the `[<-` operator for arrays,
 but without the unacceptable inefficiency of calling
-`do.call("[<-]", ...)` as a function.
+`do.call("[<-", ...)` as a function.
 
 An additional issue with sub-set operations on arrays with an unknown
 number of dimensions arises when you need to specify more complex
@@ -149,10 +149,11 @@ x[c(dim(x)[1] - 1, dim(x)[1]),
 ss_x(x, ~ (.N-1):.N)
 ```
 
-With ‘asub’ it’s not just shorter, but it works for arrays of any
-dimensionality, also about as fast as base ‘R’ (though ‘asub’ does have
-a bit more overhead than base ‘R’). To be clear: ‘asub’ fully supports
-specifying indices with numeric, character, and logical indices also.
+Using ‘asub’ it’s not just shorter to write, but it also works for
+arrays of any dimensionality. It’s also about as fast as base ‘R’
+(though ‘asub’ does have a bit more overhead than base ‘R’). To be
+clear: ‘asub’ fully supports specifying indices with numeric, character,
+and logical indices also.
 
  
 
@@ -160,9 +161,9 @@ specifying indices with numeric, character, and logical indices also.
 
 There are many types of data.frames. Data.frames from base ‘R’, tibbles
 (from the tidyverse), data.tables (from the tinyverse and fastverse),
-tidytables, as well as ‘sf-’ variants of these. They have different
-syntax *and* different semantics rules regarding sub-set operations.
-Constantly switching between these rules can be immensely annoying.
+tidytables, as well as ‘sf-’ variants of these. Their sub-set operations
+have different syntax *and* different semantics. Constantly switching
+between these rules can be lead to confusion.
 
 The ‘asub’ package provides sub-set methods that works consistently and
 with the same syntax for all supported types of data.frame-like objects.
@@ -178,7 +179,7 @@ x <- data.frame(a = month.abb, b = 1:12)
 y <- .dpr$tibble(a = month.abb, b = 1:12)
 z <- data.table::data.table(a = month.abb, b = 1:12)
 
-# with base R, which uses native semantics:
+# with base R, which uses R's native semantics:
 x[with(x, b > 10), "a"] <- "XXX"
 
 # with tidyverse, which uses pass-by-value semantics:
@@ -197,7 +198,7 @@ x <- data.frame(a = month.abb, b = 1:12)
 y <- .dpr$tibble(a = month.abb, b = 1:12)
 z <- data.table::data.table(a = month.abb, b = 1:12)
 
-# with asubL same syntax, same semantics, and NO non-standard evaluation!:
+# with asub: same syntax, same semantics, and NO non-standard evaluation!:
 tt_mod(x, ~ b > 10, "a", rp = "XXX")
 tt_mod(y, ~ b > 10, "a", rp = "XXX")
 tt_mod(z, ~ b > 10, "a", rp = "XXX")

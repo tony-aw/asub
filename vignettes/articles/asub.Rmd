@@ -161,10 +161,10 @@ These methods use the `s, use` argument pair to specify indices for subset opera
 `s` and `use` must be specified as follows:
 
  - The `s` argument must be a list, specifying the subscripts (i.e. dimensional indices).
- - The `use` argument must be an integer vector, specifying the dimensions for which `s` holds. Negative integers will invert indices (i.e. select all indices for that dimension EXCEPT the specified ones).
+ - The `use` argument must be an integer vector, specifying the dimensions for which `s` holds. Negative integers will invert indices (i.e. select all indices for that dimension *except* the specified ones).
 
 
-To minimize keystrokes, 'asub' provides the `n()` function, which is short-hand for `list()`; `n()` **nests** multiple objects together, just like `c()` concatenates multiple objects together.
+To minimize keystrokes, 'asub' provides the `n()` function, which is short-hand for `list()`; `n()` *nests* multiple objects together, just like `c()` concatenates multiple objects together.
 
 Here's an examples where `s` is given as a list (using `n()`), where we select rows `1:3` and *remove* columns `c("a", "b")`:
 
@@ -180,7 +180,7 @@ x <- array(
 # subset with base 'R':
 x[1:3, setdiff(dimnames(x)[[2]], c("a", "b")), , drop = FALSE]
 
-# subset with 'squarebrakcets':
+# subset with 'asub':
 # Note: s = n(1:3, c("a", "b")), use = c(1, -2)
 ss_x(x, n(1:3, c("a", "b")), c(1, -2))
 
@@ -302,7 +302,7 @@ Keywords are available for vectors, arrays, and also data.frame-like objects.
 
 ## No unnecessary copies
 
-The `ss_mod()` function modifies an array using R's native semantics. It needs to be stressed that `ss_mod()` is set-up significantly smarter than a naïve programmatic use of "[<-": **any function-like call** of `[<-` - whether it be `[<-(x, ...indices.., value)`, `do.call("[<-]", list(x, indices, value))`, or even `eval(quote(...)`, and so on - will **ALWAYS** make a copy of the input. Always. `ss_mod()`, however, **only** makes a copy when the regular use of `[<-` would also make a copy. Thus `ss_mod()` is more memory safe and more memory efficient than any of the naïve approaches.
+The `ss_mod()` function modifies an array using R's native semantics. It needs to be stressed that `ss_mod()` is set-up significantly smarter than a naïve programmatic use of "[<-": any programmatic function-like call of `[<-` - whether it be `do.call("[<-", ...)`, `eval(quote(...)`, or even `[<-(x, ...indices.., value)`, and so on - will always make a copy of the input. `ss_mod()`, however, **only** makes a copy when the regular use of `[<-` would also make a copy. Thus `ss_mod()` is more memory safe and more memory efficient than any of the naïve approaches.
 
 &nbsp;
 

@@ -62,13 +62,6 @@
 }
 
 #' @keywords internal
-NULL
-
-.rcpp_ptrn_shift <- function(ptrn, start, end) {
-    .Call(`_asub_rcpp_ptrn_shift`, ptrn, start, end)
-}
-
-#' @keywords internal
 #' @noRd
 .rcpp_serial <- function(x) {
     .Call(`_asub_rcpp_serial`, x)

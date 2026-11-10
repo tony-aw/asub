@@ -179,7 +179,7 @@ str(obj) # notice that columns "a" and "c" are INTEGER (`int`)
 #>  $ b: chr  "a" "b" "c" "d" ...
 #>  $ c: int  11 12 13 14 15 16 17 18 19 20
 #>  $ d: Factor w/ 10 levels "a","b","c","d",..: 1 2 3 4 5 6 7 8 9 10
-#>  - attr(*, ".internal.selfref")=<pointer: 0x000001baae058ca0> 
+#>  - attr(*, ".internal.selfref")=<pointer: 0x0000024c4d858d70> 
 dt_setcoe(obj, is.numeric, v = as.numeric) # integers are now numeric
 str(obj) # now those columns are double/numeric
 #> Classes 'data.table' and 'data.frame':   10 obs. of  4 variables:
@@ -187,7 +187,7 @@ str(obj) # now those columns are double/numeric
 #>  $ b: chr  "a" "b" "c" "d" ...
 #>  $ c: num  11 12 13 14 15 16 17 18 19 20
 #>  $ d: Factor w/ 10 levels "a","b","c","d",..: 1 2 3 4 5 6 7 8 9 10
-#>  - attr(*, ".internal.selfref")=<pointer: 0x000001baae058ca0> 
+#>  - attr(*, ".internal.selfref")=<pointer: 0x0000024c4d858d70> 
 
 
 #############################################################################

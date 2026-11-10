@@ -6,8 +6,8 @@
   [`asub-package`](https://tony-aw.github.io/asub/reference/aaa00_asub_help.md)
   [`asub`](https://tony-aw.github.io/asub/reference/aaa00_asub_help.md)
   [`asub_help`](https://tony-aw.github.io/asub/reference/aaa00_asub_help.md)
-  : asub: Programmatically Friendly Subset Methods for Arrays and
-  Array-like S3 Objects
+  : asub: Programmatically Friendly Subset Functions for Array-like and
+  Data.frame-like S3 Objects
 - [`aaa01_asub_methods`](https://tony-aw.github.io/asub/reference/aaa01_asub_methods.md)
   [`asub_methods`](https://tony-aw.github.io/asub/reference/aaa01_asub_methods.md)
   : Methods Available in 'asub'
@@ -91,7 +91,6 @@
 
 - [`n()`](https://tony-aw.github.io/asub/reference/nest.md) : Nest
 - [`ndim()`](https://tony-aw.github.io/asub/reference/size.md)
-  [`rdim()`](https://tony-aw.github.io/asub/reference/size.md)
   [`s()`](https://tony-aw.github.io/asub/reference/size.md) : Get Size
   Properties of an Object
 - [`ss2coord()`](https://tony-aw.github.io/asub/reference/ss2ii.md)

@@ -1,43 +1,45 @@
-# asub: Programmatically Friendly Subset Methods for Arrays and Array-like S3 Objects
+# asub: Programmatically Friendly Subset Functions for Array-like and Data.frame-like S3 Objects
 
 asub:  
-Programmatically Friendly Subset Methods for Arrays and Array-like S3
-Objects.  
+Programmatically Friendly Sub-set Functions for Array-like and
+Data.frame-like S3 Objects.  
   
-Provides programmatically friendly subset methods for arrays and
-array-like S3 objects.
+Provides programmatically friendly sub-set functions for array-like and
+data.frame-like S3 objects.
 
-It supports array-like objects (including matrices and 1d vectors), and
-most types of data.frames, and may be more convenient alternatives to
-the `[` and `[<-` operators, whilst maintaining similar performance.
+These functions supports array-like objects (including matrices and 1d
+vectors), and most types of data.frames, and may be more convenient
+alternatives to the `[` and `[<-` operators, whilst maintaining similar
+performance.
 
-Some nice properties of these methods include, but are not limited to,
+Some nice properties of these functions include, but are not limited to,
 the following:
 
 1.  Performing dimensional subset operations on an array using `[` and
     `[<-`, requires a-priori knowledge on the number of dimensions the
     array has;  
-    The 'asub' methods work on any arbitrary dimensions without
+    The 'asub' functions work on any arbitrary dimensions without
     requiring such prior knowledge.
 
 2.  The `[` and `[<-` operators use different rule-sets for different
     data.frame-like types (data.frames, data.tables, tibbles,
     tidytables, etc.);  
-    The 'asub' methods use the same rule-sets for the different
+    The 'asub' functions use the same rule-sets for the different
     data.frame-like types.
 
-3.  Unlike the `[` and `[<-` operators, the 'asub' methods will operate
-    on duplicate names (not just the first match), use consistent syntax
-    for inverting indices, give an error for out-of-bounds indices, and
-    support the use of advanced indices through formulas.
+3.  Unlike the `[` and `[<-` operators, the 'asub' functions will
+    operate on duplicate names (not just the first match), use
+    consistent syntax for inverting indices, give an error for
+    out-of-bounds indices, and support the use of advanced indices
+    through formulas.
 
-4.  The `[<-` operator only supports copy-on-modify semantics for most
-    classes;  
-    The 'asub' methods provide explicit pass-by-reference semantics as
+4.  The `[<-` operator only supports native copy-on-modify semantics for
+    most classes;  
+    The 'asub' functions provide explicit pass-by-reference semantics as
     well as R's native semantics, and do so safely and memory
     efficiently.
 
-5.  All of the methods provided by 'squarbrackets' are programmatically
+5.  All of the functions provided by 'asub' are programmatically
     friendly (no Non-Standard Evaluation).  
       
 
@@ -50,9 +52,9 @@ But in some situations the square brackets operators are occasionally
 less than optimally convenient for arrays.  
   
 The Goal of the 'asub' package is not to replace the square-brackets
-operators, but to provide **alternative** sub-setting methods and
-functions for arrays and array-like objects, to be used in situations
-where the square bracket operators are inconvenient.  
+operators, but to provide **alternative** sub-setting functions for
+array-like and data.frame-like objects, to be used in situations where
+the square bracket operators are inconvenient.  
   
 
 ## Quick Start Guide
@@ -172,23 +174,12 @@ have the following properties:
     Powered by the subclass agnostic 'C'-code from 'collapse' and
     'data.table'.
 
-- **Explicit copy semantics**:
-
-  - Sub-set operations that change its memory allocations, always return
-    a modified (partial) copy of the object.  
-
-  - For sub-set operations that just change values in-place (similar to
-    the `[<-` and `[[<-` methods) the user can choose a method that
-    modifies the object by **reference**, or choose a method that
-    returns a **(partial) copy**.
-
 - **Careful handling of names**:
 
   - Sub-setting an object by index names returns ALL matches with the
     given names, not just the first.
 
-  - Data.frame-like objects (see supported classes below) are forced to
-    have unique column names.
+  - Data.frame-like objects are forced to have unique column names.
 
 - **Concise function and argument names**.
 
